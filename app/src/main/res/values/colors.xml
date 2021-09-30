@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E21E2C</color>
+    <color name="colorPrimaryDark">#91141D</color>
+    <color name="colorAccent">#FFEA00</color>
+    <color name="colorBg">#FFFAF1</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorGray">#D1D1D1</color>
+    <color name="colorGray2">#9E9E9E</color>
+    <color name="colorGray3">#ACACAC</color>
+    <color name="colorGray4">#AAAAAA</color>
+    <color name="colorDark">#191919</color>
+    <color name="colorTab">#DFD9CD</color>
+    <color name="barColor">#FFFAF1</color>
+    <color name="colorAccept">#37D419</color>
+    <color name="colorRefuse">#FF0000</color>
+    <color name="colorPrimaryDisabled">#55FF0000</color>
+    <color name="roundedBottomSheetPrimaryBackground">@android:color/transparent</color>
+    <color name="colorRowSecondary">#96e2e2e2</color>
+    <color name="colorDarkGray">#ADADAD</color>
+    <color name="colorSemiTransparent">#55000000</color>
+    <color name="colorTextGray">#C6C6C6</color>
+
+</resources>

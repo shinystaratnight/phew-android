@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rgPostViewers"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostViewers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="4dp"
+        android:text="@string/who_can_see_your_post"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6b6b6b" />
+
+    <RadioButton
+        android:id="@+id/rbPostViewersAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:buttonTint="@android:color/black"
+        android:checked="true"
+        android:text="@string/all" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6b6b6b" />
+
+    <RadioButton
+        android:id="@+id/rbPostViewersFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:buttonTint="@android:color/black"
+        android:text="@string/friends" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6b6b6b" />
+
+    <RadioButton
+        android:id="@+id/rbPostViewersFollowers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:buttonTint="@android:color/black"
+        android:text="@string/followers" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6b6b6b" />
+
+    <RadioButton
+        android:id="@+id/rbPostViewersOnlyMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:buttonTint="@android:color/black"
+        android:text="@string/only_me" />
+</RadioGroup>

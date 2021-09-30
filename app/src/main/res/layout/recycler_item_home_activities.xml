@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="0dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+    app:elevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivFirstActivitiesItemUserImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_emoji"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linFirstActivitiesItemUserData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivFirstActivitiesItemUserImage"
+            app:layout_constraintTop_toTopOf="@id/ivFirstActivitiesItemUserImage"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibFirstActivitiesItemType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_location_h" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemUserActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/watching"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemUserActivation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemScreenShots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="8dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_screen_profile"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/tvFirstActivitiesItemMenu"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:scaleType="center"
+                android:src="@drawable/ic_menu" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linFirstActivitiesItemMentions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linFirstActivitiesItemUserData"
+            app:layout_constraintStart_toStartOf="@+id/linFirstActivitiesItemUserData"
+            app:layout_constraintTop_toBottomOf="@+id/linFirstActivitiesItemUserData"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemMentionWith"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/with"
+                android:textAlignment="viewStart"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemMentionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemMentionAnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/and"
+                android:textAlignment="viewStart" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemMentionOthers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFirstActivitiesItemTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ibFirstActivitiesItemRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_star_post_on" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibFirstActivitiesItemShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginVertical="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_echo_post"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linFirstActivitiesItemMentions"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="@+id/linFirstActivitiesItemMentions"
+            app:layout_constraintTop_toBottomOf="@+id/linFirstActivitiesItemMentions" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFirstActivitiesItemMentionsImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ibFirstActivitiesItemShare"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/linFirstActivitiesItemMentions"
+            app:layout_constraintTop_toBottomOf="@+id/linFirstActivitiesItemMentions"
+            tools:itemCount="3"
+            tools:listitem="@layout/recycler_item_home_activity_mentions" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivFirstActivitiesItemMentionsOthers"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_emoji"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/rvFirstActivitiesItemMentionsImages"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/rvFirstActivitiesItemMentionsImages"
+            app:layout_constraintTop_toTopOf="@+id/rvFirstActivitiesItemMentionsImages" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivFirstActivitiesItemMentionsOthersFilter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="#99ffffff"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintEnd_toEndOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintStart_toStartOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintTop_toTopOf="@+id/ivFirstActivitiesItemMentionsOthers" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFirstActivitiesItemMentionsOthers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:maxLength="3"
+            android:text="+01"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintEnd_toEndOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintStart_toStartOf="@+id/ivFirstActivitiesItemMentionsOthers"
+            app:layout_constraintTop_toTopOf="@+id/ivFirstActivitiesItemMentionsOthers" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    tools:context=".ui.showProfile.ShowProfileActivity">
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar_profile"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView3"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/wall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:src="#55F8C9CA"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView3"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView3"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView3">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/isHomeSlider"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_period="3000"
+            app:iss_title_background="@drawable/gradient"
+            app:iss_selected_dot="@drawable/slider_selected_dot"
+            app:iss_unselected_dot="@drawable/slider_unselected_dot" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_add_friends"
+        android:text="@string/add_friends"
+        android:paddingHorizontal="2dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView3"
+        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAccept"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_add_friends"
+        android:text="@string/accept"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnRefuse"
+        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRefuse"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_add_friends"
+        android:text="@string/refuse"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnFollow"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_follow"
+        android:text="@string/un_follow"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView3"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView3">
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvMessages"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle_messages"
+            android:scaleType="center"
+            android:src="@drawable/ic_message_2"
+            app:layout_constraintEnd_toStartOf="@+id/view6"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvQs"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle_qs"
+            android:scaleType="center"
+            android:src="@drawable/ic_qs_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toEndOf="@+id/view6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="72dp"
+            android:lines="1"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:text="@string/full_name"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imvMessages" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFriendsNumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tvPostsNumValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView4" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFriendsNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/friend"
+            android:textColor="@color/colorTextGray"
+            app:layout_constraintEnd_toEndOf="@+id/tvFriendsNumValue"
+            app:layout_constraintStart_toStartOf="@+id/tvFriendsNumValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvFriendsNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPostsNumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tvFollowersNumValue"
+            app:layout_constraintStart_toEndOf="@+id/tvFriendsNumValue"
+            app:layout_constraintTop_toTopOf="@+id/tvFriendsNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPostsNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/post"
+            android:textColor="@color/colorTextGray"
+            app:layout_constraintEnd_toEndOf="@+id/tvPostsNumValue"
+            app:layout_constraintStart_toStartOf="@+id/tvPostsNumValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvPostsNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFollowersNumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tvFollowingNumValue"
+            app:layout_constraintStart_toEndOf="@+id/tvPostsNumValue"
+            app:layout_constraintTop_toTopOf="@+id/tvPostsNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFollowersNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/followers2"
+            android:textColor="@color/colorTextGray"
+            app:layout_constraintEnd_toEndOf="@+id/tvFollowersNumValue"
+            app:layout_constraintStart_toStartOf="@+id/tvFollowersNumValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvFollowersNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFollowingNumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvFollowersNumValue"
+            app:layout_constraintTop_toTopOf="@+id/tvFollowersNumValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFollowingNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/following"
+            android:textColor="@color/colorTextGray"
+            app:layout_constraintEnd_toEndOf="@+id/tvFollowingNumValue"
+            app:layout_constraintStart_toStartOf="@+id/tvFollowingNumValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvFollowingNumValue" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_verified_2"
+            app:layout_constraintEnd_toStartOf="@+id/tvUserName"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imvMessages"
+            app:layout_constraintTop_toBottomOf="@+id/imvMessages" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_premium_4"
+            app:layout_constraintEnd_toStartOf="@+id/imvQs"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvUserName"
+            app:layout_constraintTop_toBottomOf="@+id/imvQs" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvAll"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_all_d"
+            app:layout_constraintEnd_toStartOf="@+id/imvLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFriendsNum" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvLocation"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_location_profile"
+            app:layout_constraintEnd_toStartOf="@+id/imvWatching"
+            app:layout_constraintStart_toEndOf="@+id/imvAll"
+            app:layout_constraintTop_toTopOf="@+id/imvAll" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvWatching"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_television_profile_d"
+            app:layout_constraintEnd_toStartOf="@+id/imvStar"
+            app:layout_constraintStart_toEndOf="@+id/imvLocation"
+            app:layout_constraintTop_toTopOf="@+id/imvLocation" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvStar"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_profile_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvWatching"
+            app:layout_constraintTop_toTopOf="@+id/imvLocation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/flMainClient"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.Pulse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/colorPrimary" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

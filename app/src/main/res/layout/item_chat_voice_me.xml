@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imvUserImage"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="12dp"
+        android:src="@color/colorPrimary"
+        android:visibility="visible"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="0.8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="#5D5D5D"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imvUserImage"
+        app:layout_constraintStart_toEndOf="@+id/imvUserImage"
+        app:layout_constraintTop_toTopOf="@+id/imvUserImage"
+        tools:ignore="SmallSp" />
+
+
+
+    <com.rygelouv.audiosensei.player.AudioSenseiPlayerView
+        android:id="@+id/voicePlayerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvUserImage"
+        app:layout_goneMarginTop="4dp"
+       />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

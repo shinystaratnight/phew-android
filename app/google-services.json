@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "844584857577",
+    "firebase_url": "https://phew-dd59a.firebaseio.com",
+    "project_id": "phew-dd59a",
+    "storage_bucket": "phew-dd59a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844584857577:android:53a9a3fb470649767f6578",
+        "android_client_info": {
+          "package_name": "com.app.phew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844584857577-5ul83is8un7r5lsdc51qj1np1biaqe38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrp4a8DXN66EYPX7S4igVRwD5lzk5ANow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844584857577-5ul83is8un7r5lsdc51qj1np1biaqe38.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844584857577-sahv9h5ssbangvhgtup62u51buk8rvfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.AlamiaHura.Phew"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

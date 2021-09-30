@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    android:id="@+id/followUsParent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/followUsSwipe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/app_bar_with_title_only"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNeedHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="24sp"
+                android:text="@string/need_help"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/contacts"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNeedHelp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/phone"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/black"
+                android:drawablePadding="16dp"
+                 android:elevation="2dp"
+                android:background="@drawable/border_rounded_corner_gray"
+                android:drawableStart="@drawable/ic_phone2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvContact" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/whatsApp"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:paddingStart="10dp"
+                android:drawablePadding="16dp"
+                android:gravity="start|center_vertical"
+                android:paddingEnd="10dp"
+                android:elevation="2dp"
+                android:background="@drawable/border_rounded_corner_gray"
+                android:drawableStart="@drawable/ic_whatsapp2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mail"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:drawablePadding="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                 android:elevation="2dp"
+                android:background="@drawable/border_rounded_corner_gray"
+                android:drawableStart="@drawable/ic_message_contact"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/whatsApp" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/mail"
+                app:layout_constraintStart_toStartOf="@+id/mail"
+                app:layout_constraintTop_toBottomOf="@+id/mail">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imvFacebook"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_facebook"
+                    app:civ_border_color="@color/colorRowSecondary"
+                    app:civ_border_width="0.1dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imvTwitter"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_twitter"
+                    app:civ_border_color="@color/colorRowSecondary"
+                    app:civ_border_width="0.1dp"
+                    app:layout_constraintStart_toEndOf="@+id/imvFacebook"
+                    app:layout_constraintTop_toBottomOf="@+id/mail" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imvInsta"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_instagram2"
+                    app:civ_border_color="@color/colorRowSecondary"
+                    app:civ_border_width="0.1dp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/spin_kit"
+                    style="@style/SpinKitView.Large.Pulse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:SpinKit_Color="@color/colorPrimary" />
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

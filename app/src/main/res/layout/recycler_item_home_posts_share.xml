@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="0dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+    app:elevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivEchoPostsItemUserImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_emoji"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linEchoPostsItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivEchoPostsItemUserImage"
+            app:layout_constraintTop_toTopOf="@id/ivEchoPostsItemUserImage"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEchoPostsItemText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_echo"
+                android:drawablePadding="8dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/share_post_with"
+                android:textAlignment="viewStart"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEchoPostsItemScreenShots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="8dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_screen_profile"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/tvEchoPostsItemMenu"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:scaleType="center"
+                android:src="@drawable/ic_menu" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEchoPostsItemUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:gravity="start|center_vertical"
+            android:lines="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="@string/app_name"
+            android:textAlignment="viewStart"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/ivEchoPostsItemUserImage"
+            app:layout_constraintTop_toBottomOf="@+id/linEchoPostsItemText"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEchoPostsItemTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:ellipsize="end"
+            android:gravity="start|center_vertical"
+            android:lines="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="@string/app_name"
+            android:textAlignment="viewStart"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvEchoPostsItemUserName"
+            app:layout_constraintStart_toEndOf="@id/tvEchoPostsItemUserName"
+            app:layout_constraintTop_toTopOf="@id/tvEchoPostsItemUserName" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layEchoPostsItemPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivEchoPostsItemUserImage"
+            app:layout_constraintTop_toBottomOf="@+id/tvEchoPostsItemUserName"
+            app:layout_constraintVertical_bias="0">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivEchoItemUserImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_emoji"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEchoItemUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivEchoItemUserImage"
+                app:layout_constraintTop_toTopOf="@id/ivEchoItemUserImage"
+                app:layout_constraintVertical_bias="0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEchoItemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvEchoItemUserName"
+                app:layout_constraintStart_toEndOf="@id/tvEchoItemUserName"
+                app:layout_constraintTop_toTopOf="@id/tvEchoItemUserName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEchoItemText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/app_name"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivEchoItemUserImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvEchoItemUserName"
+                app:layout_constraintVertical_bias="0" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEchoItemImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvEchoItemText"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/tvEchoItemText"
+                app:layout_constraintTop_toBottomOf="@+id/tvEchoItemText"
+                app:layout_constraintVertical_bias="0"
+                tools:listitem="@layout/recycler_item_post_attachments" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/viewEchoPostsItemLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_scale"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layEchoPostsItemPost"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEchoPostsItemReactions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawableStart="@drawable/ic_emoji"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="1.25k"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewEchoPostsItemLine" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibEchoPostsItemRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_star_post_off"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEchoPostsItemReactions"
+            app:layout_constraintEnd_toStartOf="@+id/ibEchoPostsItemShare"
+            app:layout_constraintStart_toEndOf="@+id/tvEchoPostsItemReactions"
+            app:layout_constraintTop_toTopOf="@+id/tvEchoPostsItemReactions" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibEchoPostsItemShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_echo_post"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEchoPostsItemReactions"
+            app:layout_constraintEnd_toStartOf="@+id/tvEchoPostsItemComments"
+            app:layout_constraintStart_toEndOf="@+id/ibEchoPostsItemRate"
+            app:layout_constraintTop_toTopOf="@+id/tvEchoPostsItemReactions" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEchoPostsItemComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:drawableStart="@drawable/ic_comments_post"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="1.25k"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEchoPostsItemReactions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvEchoPostsItemReactions" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

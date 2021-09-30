@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_bg_login"
+        tools:context=".ui.signing.SignIngActivity">
+
+        <!-- logo -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_red"
+            android:layout_marginTop="@dimen/d_40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvForget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_16"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/tahomabd"
+            android:text="@string/forget_password"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+        <!-- hint -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_16"
+            android:layout_marginTop="8dp"
+            android:text="@string/enter_the_digit_code"
+            android:textColor="@color/colorGray2"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvForget" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+
+            android:layoutDirection="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edFirstDigit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/code_bg"
+                android:gravity="center"
+                android:hint="@string/dash"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/edSecondDigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edSecondDigit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/code_bg"
+                android:gravity="center"
+                android:hint="@string/dash"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edFirstDigit"
+                app:layout_constraintEnd_toStartOf="@+id/edThirdDigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/edFirstDigit"
+                app:layout_constraintTop_toTopOf="@+id/edFirstDigit" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edThirdDigit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/code_bg"
+                android:gravity="center"
+                android:hint="@string/dash"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edSecondDigit"
+                app:layout_constraintEnd_toStartOf="@+id/edFourthDigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/edSecondDigit"
+                app:layout_constraintTop_toTopOf="@+id/edSecondDigit" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edFourthDigit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/code_bg"
+                android:gravity="center"
+                android:hint="@string/dash"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edThirdDigit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/edThirdDigit"
+                app:layout_constraintTop_toTopOf="@+id/edThirdDigit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_send_code_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/you_can_re_send_code_after"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <!-- timer -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_send_code_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10"
+            android:text="00:00"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_send_code_title" />
+
+        <!-- resend code -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_send_code_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/tahomabd"
+            android:text="@string/resend_again"
+            android:visibility="invisible"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_send_code_timer" />
+
+        <!-- activate account -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirmCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_bg"
+            android:paddingVertical="@dimen/d_16"
+            android:text="@string/confirm_code"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_send_code_again" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/createNewLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDontHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_account"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvSignIn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/tahomabd"
+                android:text="@string/login"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvDontHaveAccount"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/rel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48000002">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Large.Pulse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:SpinKit_Color="@color/colorPrimary" />
+        </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
