@@ -1,7 +1,7 @@
 <resources>
     <!--Base strings-->
     <string name="app_name">Phew</string>
-    <string name="server_client_id" translatable="false">844584857577-408fbbs20jgdn5ovu6lst718n9jfpu3f.apps.googleusercontent.com</string>
+    <string name="server_client_id" translatable="false">893471240237-fah1f70h23f1mo41fgq2skgqkdvq1035.apps.googleusercontent.com</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ok">OK</string>

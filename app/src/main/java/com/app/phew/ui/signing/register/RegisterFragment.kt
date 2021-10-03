@@ -2,6 +2,7 @@ package com.app.phew.ui.signing.register
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +12,11 @@ import com.app.phew.listners.OnDeleteImageClickListener
 import com.app.phew.listners.OnItemClickListener
 import com.app.phew.models.BaseResponse
 import com.app.phew.models.ListModel
+import com.app.phew.models.auth.LoginResponse
 import com.app.phew.models.cities.CitiesResponse
 import com.app.phew.models.countries.CountriesResponse
+import com.app.phew.ui.main.MainActivity
+import com.app.phew.ui.signing.SignIngActivity
 import com.app.phew.ui.signing.forgetPassword.verificationCode.VerificationCodeActivity
 import com.app.phew.utils.CommonUtil
 import com.app.phew.utils.SBManager
@@ -44,17 +48,6 @@ class RegisterFragment : BaseFragment(), OnDeleteImageClickListener, RegisterCon
     var images: ArrayList<String> = ArrayList()
     override fun initializeComponents(view: View) {
         imagesAdapter = RegisterImageAdapter(mContext, images, R.layout.item_image, this)
-        rvImages.adapter = imagesAdapter
-        imvUserImages.setOnClickListener {
-            if (images.size==3)
-               SBManager.displayError(mContext,getString(R.string.you_are_not_allowed_to_add_more_than_picture))
-            else pickImages()
-        }
-        tvProfileImages.setOnClickListener {
-            if (images.size==3)
-                SBManager.displayError(mContext,getString(R.string.you_are_not_allowed_to_add_more_than_picture))
-            else pickImages()
-        }
         mPresenter = RegisterPresenter(this)
         models = ArrayList()
         etCountry.setOnClickListener {
@@ -82,6 +75,9 @@ class RegisterFragment : BaseFragment(), OnDeleteImageClickListener, RegisterCon
                 images,
                 countryId,cityId,mSharedPrefManager.mobileType,CommonUtil.getDeviceToken(mContext)
             )
+        }
+        btn_reg_google.setOnClickListener {
+            (requireActivity() as SignIngActivity).goLogin()
         }
 
     }
@@ -183,6 +179,18 @@ class RegisterFragment : BaseFragment(), OnDeleteImageClickListener, RegisterCon
         models.addAll(data)
         mDialog = ListDialog(mContext, this, models, getString(R.string.please_select_city))
         mDialog.show()
+    }
+
+    override fun onSocialLogin(data: LoginResponse) {
+        SBManager.displayMessage(mContext, data.message.toString())
+        if (data.data != null) {
+            mSharedPrefManager.userData = data.data
+            if (data.data.token != null) mSharedPrefManager.authToken =
+                "${data.data.token.token_type.toString()} ${data.data.token.access_token.toString()}"
+            mSharedPrefManager.loginStatus = true
+            mSharedPrefManager.guest = false
+            MainActivity.startActivity(mContext as AppCompatActivity)
+        }
     }
 
     override fun onResponseSuccess(data: BaseResponse) {

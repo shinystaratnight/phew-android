@@ -6,10 +6,12 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.app.phew.R
 import com.app.phew.base.ParentActivity
 import com.app.phew.ui.signing.login.LoginFragment
 import com.app.phew.ui.signing.register.RegisterFragment
+import com.app.phew.utils.CommonUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -91,9 +93,18 @@ class SignIngActivity : ParentActivity() {
 //        val email = account.email?.toString()
 //        val id = account.id?.toString()
 //        val imageUrl = account.photoUrl?.toString()
-        if (!mSharedPrefManager.deviceToken.isNullOrEmpty()) LoginFragment().mPresenter.socialLogin(
+        val fragment: Fragment = (sinIngViewPager.adapter?.instantiateItem(
+            sinIngViewPager,
+            sinIngViewPager.currentItem
+        )) as Fragment
+        if (sinIngViewPager.currentItem == 0) {
+            (fragment as LoginFragment).mPresenter.socialLogin(
+            fullName.toString(), "google", token.toString(),
+            "android", CommonUtil.getDeviceToken(this))
+        } else {
+            (fragment as RegisterFragment).mPresenter.socialLogin(
                 fullName.toString(), "google", token.toString(),
-                "android", mSharedPrefManager.deviceToken
-        )
+                "android", CommonUtil.getDeviceToken(this))
+        }
     }
 }

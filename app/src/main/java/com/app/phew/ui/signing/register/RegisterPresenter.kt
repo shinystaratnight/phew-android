@@ -2,6 +2,7 @@ package com.app.phew.ui.signing.register
 
 import com.app.phew.base.MVPBaseInteractorOutput
 import com.app.phew.models.BaseResponse
+import com.app.phew.models.auth.LoginResponse
 import com.app.phew.models.cities.CitiesResponse
 import com.app.phew.models.countries.CountriesResponse
 import com.app.phew.utils.ValidationUtils
@@ -20,13 +21,13 @@ class RegisterPresenter(var view: RegisterContract.View?) : RegisterContract.Pre
             email.isEmpty() -> view?.showFieldError("email")
             !ValidationUtils.isEmail(email)-> view?.showFieldError("notEmail")
             mobile.isEmpty() -> view?.showFieldError("mobile")
-            cityId!! < 0 ->{view?.showFieldError("country")}
-            countryId!! < 0 ->{view?.showFieldError("cityId")}
+//            cityId!! < 0 ->{view?.showFieldError("country")}
+//            countryId!! < 0 ->{view?.showFieldError("cityId")}
             password.isEmpty() -> view?.showFieldError("password")
             password!=confirmPassword -> view?.showFieldError("notMatch")
             else -> mInterActor!!.register(
-                fullname, mobile, email, password,confirmPassword, images, countryId,
-                cityId, deviceType, deviceToken, object : MVPBaseInteractorOutput<BaseResponse> {
+                fullname, mobile, email, password,confirmPassword, images, null,
+                null, deviceType, deviceToken, object : MVPBaseInteractorOutput<BaseResponse> {
                     override fun onServiceRunning() {
                         view?.showProgress()
                     }
@@ -100,6 +101,37 @@ class RegisterPresenter(var view: RegisterContract.View?) : RegisterContract.Pre
                 }
 
                 override fun onResponseError(response: Response<CitiesResponse>) {
+                    view?.apply {
+                        hideProgress()
+                        onResponseError(response.errorBody()!!.string())
+                    }
+                }
+
+                override fun onResponseFailure(t: Throwable) {
+                    view?.apply {
+                        hideProgress()
+                        onResponseFailure(t)
+                    }
+                }
+            })
+    }
+
+    override fun socialLogin(fullName: String, providerType: String, providerId: String, deviceType: String?, deviceToken: String?) {
+        mInterActor!!.socialLogin(
+            fullName, providerType, providerId, deviceType, deviceToken,
+            object : MVPBaseInteractorOutput<LoginResponse> {
+                override fun onServiceRunning() {
+                    view?.showProgress()
+                }
+
+                override fun onResponseSuccess(response: Response<LoginResponse>) {
+                    view?.apply {
+                        hideProgress()
+                        onSocialLogin(response.body()!!)
+                    }
+                }
+
+                override fun onResponseError(response: Response<LoginResponse>) {
                     view?.apply {
                         hideProgress()
                         onResponseError(response.errorBody()!!.string())

@@ -38,50 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imvUserImages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ic_businessman"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvProfileImages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/tahoma"
-            android:gravity="center"
-            android:text="@string/profile_images"
-            android:textColor="@color/colorPrimary"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/imvUserImages"
-            app:layout_constraintStart_toStartOf="@+id/imvUserImages"
-            app:layout_constraintTop_toBottomOf="@+id/imvUserImages"
-            tools:ignore="SmallSp" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvImages"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingEnd="8dp"
-            android:paddingTop="4dp"
-            android:background="@drawable/edit_text_bg"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@+id/tvProfileImages"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_image"
-            app:layout_constraintStart_toEndOf="@+id/tvProfileImages"
-            app:layout_constraintTop_toTopOf="@+id/imvUserImages" />
-
-
         <!-- name -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_name"
@@ -96,7 +52,7 @@
             android:textColorHint="@color/colorGray2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvImages"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint"
             app:startIconTint="@color/colorPrimary">
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -179,9 +135,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/country"
             android:focusable="false"
+            android:hint="@string/country"
             android:textColorHint="@color/colorGray2"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_phone"
@@ -191,11 +148,11 @@
                 android:id="@+id/etCountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textNoSuggestions"
-                android:textAlignment="viewStart"
-                android:focusable="false"
                 android:drawableStart="@drawable/ic_flag"
                 android:drawablePadding="10dp"
+                android:focusable="false"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -209,9 +166,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/city"
             android:focusable="false"
+            android:hint="@string/city"
             android:textColorHint="@color/colorGray2"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilCountry"
@@ -221,11 +179,11 @@
                 android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textNoSuggestions"
-                android:textAlignment="viewStart"
-                android:focusable="false"
                 android:drawableStart="@drawable/ic_flag"
                 android:drawablePadding="10dp"
+                android:focusable="false"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -310,14 +268,14 @@
             android:layout_marginTop="@dimen/d_35"
             android:text="@string/or"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_google"
+            app:layout_constraintBottom_toTopOf="@id/btn_reg_google"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
         <!-- sign by google -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_google"
+            android:id="@+id/btn_reg_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/d_16"

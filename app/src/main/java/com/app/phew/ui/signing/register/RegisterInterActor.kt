@@ -2,6 +2,7 @@ package com.app.phew.ui.signing.register
 
 import com.app.phew.base.MVPBaseInteractorOutput
 import com.app.phew.models.BaseResponse
+import com.app.phew.models.auth.LoginResponse
 import com.app.phew.models.cities.CitiesResponse
 import com.app.phew.models.countries.CountriesResponse
 import com.app.phew.network.RetroWeb
@@ -85,6 +86,25 @@ class RegisterInterActor : RegisterContract.InterActor, ProgressRequestBody.Uplo
                 }
 
                 override fun onFailure(call: Call<CitiesResponse>, t: Throwable) {
+                    output.onResponseFailure(t)
+                }
+            })
+    }
+
+    override fun socialLogin(fullName: String, providerType: String, providerId: String, deviceType: String?, deviceToken: String?, output: MVPBaseInteractorOutput<LoginResponse>) {
+        output.onServiceRunning()
+        RetroWeb.client.create(ServiceApi::class.java)
+            .socialLogin(fullName, providerType, providerId, deviceType, deviceToken)
+            .enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>, response: Response<LoginResponse>
+                ) {
+                    if (response.isSuccessful)
+                        output.onResponseSuccess(response)
+                    else output.onResponseError(response)
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     output.onResponseFailure(t)
                 }
             })

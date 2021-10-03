@@ -4,6 +4,7 @@ import com.app.phew.base.MVPBaseApiView
 import com.app.phew.base.MVPBaseInteractorOutput
 import com.app.phew.base.MVPBasePresenter
 import com.app.phew.models.BaseResponse
+import com.app.phew.models.auth.LoginResponse
 import com.app.phew.models.cities.CitiesResponse
 import com.app.phew.models.countries.CountriesResponse
 
@@ -16,12 +17,17 @@ class RegisterContract {
         )
         fun getCountries()
         fun getCities(countryId: Int)
+        fun socialLogin(
+            fullName: String, providerType: String, providerId: String,
+            deviceType: String?, deviceToken: String?
+        )
     }
 
     interface View : MVPBaseApiView<BaseResponse> {
         fun showFieldError(field: String)
         fun onGetCountriesSuccess(response: CountriesResponse)
         fun onGetCitiesSuccess(response: CitiesResponse)
+        fun onSocialLogin(data: LoginResponse)
     }
 
     interface InterActor {
@@ -32,5 +38,9 @@ class RegisterContract {
         )
         fun getCountries(output: MVPBaseInteractorOutput<CountriesResponse>)
         fun getCities(countryId: Int,output: MVPBaseInteractorOutput<CitiesResponse>)
+        fun socialLogin(
+            fullName: String, providerType: String, providerId: String, deviceType: String?,
+            deviceToken: String?, output: MVPBaseInteractorOutput<LoginResponse>
+        )
     }
 }

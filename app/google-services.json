@@ -1,41 +1,48 @@
 {
   "project_info": {
-    "project_number": "844584857577",
-    "firebase_url": "https://phew-dd59a.firebaseio.com",
-    "project_id": "phew-dd59a",
-    "storage_bucket": "phew-dd59a.appspot.com"
+    "project_number": "893471240237",
+    "project_id": "phew-b28ca",
+    "storage_bucket": "phew-b28ca.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:844584857577:android:53a9a3fb470649767f6578",
+        "mobilesdk_app_id": "1:893471240237:android:e08cb55b99ee32cb34c8a4",
         "android_client_info": {
           "package_name": "com.app.phew"
         }
       },
       "oauth_client": [
         {
-          "client_id": "844584857577-5ul83is8un7r5lsdc51qj1np1biaqe38.apps.googleusercontent.com",
+          "client_id": "893471240237-hejl1rmaslqegel2oebl0k8m7o4vku75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.phew",
+            "certificate_hash": "b0b01493ef82d42b7f237f2d44d4a05bcb7347cb"
+          }
+        },
+        {
+          "client_id": "893471240237-fah1f70h23f1mo41fgq2skgqkdvq1035.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBrp4a8DXN66EYPX7S4igVRwD5lzk5ANow"
+          "current_key": "AIzaSyDkgJagWkPHeerPHy0eknSjWFA5iZni-sw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "844584857577-5ul83is8un7r5lsdc51qj1np1biaqe38.apps.googleusercontent.com",
+              "client_id": "893471240237-fah1f70h23f1mo41fgq2skgqkdvq1035.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "844584857577-sahv9h5ssbangvhgtup62u51buk8rvfo.apps.googleusercontent.com",
+              "client_id": "893471240237-31birq8stoapju4k2s2ov4kre5qcfej2.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.AlamiaHura.Phew"
+                "bundle_id": "Pheeew"
               }
             }
           ]

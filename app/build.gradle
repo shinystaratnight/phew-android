@@ -59,6 +59,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation 'com.google.firebase:firebase-core:18.0.0'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
 
     // google libraries
     implementation "com.google.android.material:material:1.3.0-alpha04"

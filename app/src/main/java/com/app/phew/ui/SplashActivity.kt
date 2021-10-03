@@ -44,12 +44,13 @@ class SplashActivity : ParentActivity(), GpsStatusDetector.GpsStatusDetectorCall
     override fun initializeComponents() {
         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
-        LocaleHelper.setLocale(mContext, "ar")
-        mLanguagePrefManager.appLanguage = "ar"
+        val languageCode = "en"
+        LocaleHelper.setLocale(mContext, languageCode)
+        mLanguagePrefManager.appLanguage = languageCode
         if (mSharedPrefManager.firstTime) {
-            LocaleHelper.setLocale(mContext, "ar")
+            LocaleHelper.setLocale(mContext, languageCode)
             mSharedPrefManager.firstTime = false
-        } else LocaleHelper.setLocale(mContext,"ar")
+        } else LocaleHelper.setLocale(mContext,languageCode)
           CommonUtil.getDeviceToken(mContext, mSharedPrefManager)
         if (GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this) ==
             com.google.android.gms.common.ConnectionResult.SUCCESS
