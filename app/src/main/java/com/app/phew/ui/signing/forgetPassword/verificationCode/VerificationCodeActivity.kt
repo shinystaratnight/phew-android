@@ -14,6 +14,7 @@ import com.app.phew.R
 import com.app.phew.base.ParentActivity
 import com.app.phew.models.BaseResponse
 import com.app.phew.ui.signing.SignIngActivity
+import com.app.phew.ui.signing.forgetPassword.enterMobile.EnterMobileActivity
 import com.app.phew.ui.signing.forgetPassword.resetPassword.ResetPasswordActivity
 import com.app.phew.utils.CommonUtil
 import com.app.phew.utils.SBManager
@@ -73,6 +74,10 @@ class VerificationCodeActivity : ParentActivity(),VerificationCodeContract.View 
         }
         tvSignIn.setOnClickListener {
             SignIngActivity.startActivity(this)
+            finishAffinity()
+        }
+        btn_change_number.setOnClickListener {
+            EnterMobileActivity.startActivity(this)
             finishAffinity()
         }
     }
