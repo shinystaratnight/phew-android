@@ -2,7 +2,7 @@ package com.app.phew.network
 
 object Urls {
     const val ENDPOINT_GOOGLE = "https://maps.googleapis.com/maps/api/"
-    const val ENDPOINT = "https://phew.orabi.rmal.com.sa/api/"
+    const val ENDPOINT = "https://www.phewdashboard.com/api/"
     const val MOVIES_END = "https://api.themoviedb.org/3/"
 
     //Auth
