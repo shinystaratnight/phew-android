@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@android:color/white"
+    android:background="@drawable/radius_shape"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,6 +12,8 @@
         android:id="@+id/tvPostViewers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:paddingVertical="4dp"
         android:text="@string/who_can_see_your_post"
@@ -47,24 +49,28 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#6b6b6b" />
+        android:background="#6b6b6b"
+        android:visibility="gone" />
 
     <RadioButton
         android:id="@+id/rbPostViewersFollowers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:buttonTint="@android:color/black"
-        android:text="@string/followers" />
+        android:text="@string/followers"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#6b6b6b" />
+        android:background="#6b6b6b"
+        android:visibility="gone" />
 
     <RadioButton
         android:id="@+id/rbPostViewersOnlyMe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:buttonTint="@android:color/black"
-        android:text="@string/only_me" />
+        android:text="@string/only_me"
+        android:visibility="gone" />
 </RadioGroup>

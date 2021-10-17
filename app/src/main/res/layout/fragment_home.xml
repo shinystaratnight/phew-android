@@ -39,9 +39,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/all"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_all_profile" />
+                android:src="@drawable/ic_all_profile_new" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnHomeFriends"
@@ -59,9 +60,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/friends"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_friends_a" />
+                android:src="@drawable/ic_friends_a_new" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

@@ -16,6 +16,7 @@ import com.app.phew.models.home.ActivityModel
 import com.app.phew.models.home.HomeModel
 import com.app.phew.models.images.ImageModel
 import com.bumptech.glide.Glide
+import com.github.pgreze.reactions.PopupGravity
 import com.github.pgreze.reactions.ReactionPopup
 import com.github.pgreze.reactions.dsl.reactionConfig
 import com.github.pgreze.reactions.dsl.reactions
@@ -155,7 +156,7 @@ class HomeAdapter(
                     itemView.tvFirstPostsItemReactions.text = "0"
                 }
                 itemView.tvFirstPostsItemReactions.setOnTouchListener(
-                        showReaction(itemView.context, itemData.data?.id ?: 0)
+                        showReaction(itemView.tvFirstPostsItemReactions.context, itemData.data?.id ?: 0)
                 )
 
                 if (itemData.data?.comments_count != null)
@@ -770,11 +771,14 @@ class HomeAdapter(
     private fun showReaction(context: Context, postId: Int): ReactionPopup {
         val config = reactionConfig(context) {
             reactions {
-                reaction { R.drawable.ic_react_love_off scale ImageView.ScaleType.FIT_XY }
+//                reaction { R.drawable.ic_react_love_off scale ImageView.ScaleType.FIT_XY }
                 reaction { R.drawable.ic_react_love_on scale ImageView.ScaleType.FIT_XY }
                 reaction { R.drawable.ic_react_laugh_on scale ImageView.ScaleType.FIT_XY }
                 reaction { R.drawable.ic_react_dislike_on scale ImageView.ScaleType.FIT_XY }
             }
+            popupGravity = PopupGravity.PARENT_RIGHT
+            popupMargin = context.resources.getDimensionPixelSize(R.dimen.popup_horizontal_margin)
+            verticalMargin = context.resources.getDimensionPixelSize(R.dimen.popup_vertical_margin)
         }
 
         return ReactionPopup(context, config) { position ->

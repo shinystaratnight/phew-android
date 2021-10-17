@@ -16,4 +16,6 @@
     <dimen name="d_40">40dp</dimen>
     <dimen name="d_60">60dp</dimen>
     <dimen name="d_45">45dp</dimen>
+    <dimen name="popup_horizontal_margin">50dp</dimen>
+    <dimen name="popup_vertical_margin">0dp</dimen>
 </resources>
