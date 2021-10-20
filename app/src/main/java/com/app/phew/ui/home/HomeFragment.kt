@@ -74,7 +74,7 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
     private var isLastPage = false
     private val totalPage = 10
     private var isLoading = false
-
+    private var postsItemActionType: String? = null
 
     private lateinit var mScreenshotDetectionDelegate: ScreenshotDetectionDelegate
 
@@ -248,6 +248,11 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
                 }
                 mAdapter.notifyItemChanged(reactedItemPos ?: 0)
             }
+            if (postsItemActionType == "Fav") {
+                mAdapter.getItem(reactedItemPos ?: 0).data?.is_fav = !mAdapter.getItem(reactedItemPos ?: 0).data?.is_fav!!
+                mAdapter.notifyItemChanged(reactedItemPos ?: 0)
+                postsItemActionType = null
+            }
         }
     }
 
@@ -360,6 +365,8 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
 
     override fun onFavoriteClick(postId: Int) {
         if (activity != null && isAdded) {
+            postsItemActionType = "Fav"
+            reactedItemPos = mHomeItems.indexOf(mHomeItems.find { it.data?.id == postId })
             mPresenter.setPostFavorite(mSharedPrefManager.authToken.toString(), postId)
         }
     }

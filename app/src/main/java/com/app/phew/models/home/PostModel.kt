@@ -13,7 +13,7 @@ data class PostModel(
         val file: String,
         val id: Int,
         val images: ArrayList<ImageModel>,
-        val is_fav: Boolean,
+        var is_fav: Boolean,
         var is_like: Boolean = false,
         var like_type: String? = null,
         var likes_count: Int = 0,

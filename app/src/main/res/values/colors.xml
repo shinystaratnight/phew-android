@@ -20,5 +20,5 @@
     <color name="colorDarkGray">#ADADAD</color>
     <color name="colorSemiTransparent">#55000000</color>
     <color name="colorTextGray">#C6C6C6</color>
-
+    <color name="colorPostsItemDivider">#29000000</color>
 </resources>
