@@ -159,4 +159,6 @@
     <string name="searching_for_location">Searching for location</string>
     <string name="share_secret_message">Share secret message</string>
     <string name="secret_message">Secret message</string>
+    <string name="re_echo_now">Re-echo now</string>
+    <string name="re_echo_with_comment">Re-echo with comment</string>
 </resources>

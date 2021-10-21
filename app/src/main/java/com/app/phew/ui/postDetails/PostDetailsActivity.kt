@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_post_details.*
+import kotlinx.android.synthetic.main.bottom_echo_options.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_viewers.*
 import kotlinx.android.synthetic.main.dialog_show_post.*
 import kotlinx.android.synthetic.main.dialog_show_post.ibChatImageClose
@@ -288,6 +289,10 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
         mPresenter.setPostFavorite(mSharedPrefManager.authToken.toString(), postId)
     }
 
+    override fun onEchoClick(postId: Int) {
+        showEchoOptions(postId)
+    }
+
     private var reactedItem: HomeModel? = null
     private var reactPosition = -1
     override fun onReactClick(postId: Int, reactionPosition: Int) {
@@ -366,6 +371,26 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
             postViewersSheet.dismiss()
         }
         postViewersSheet.show()
+    }
+
+    private fun showEchoOptions(postId: Int) {
+        val echoOptionSheet = RoundedBottomSheetDialog(mContext)
+        echoOptionSheet.setContentView(
+            LayoutInflater.from(mContext)
+                .inflate(R.layout.bottom_echo_options, null, false)
+        )
+        echoOptionSheet.rgEchoOptionViewers.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rbReEchoNow -> mPresenter.updatePostPrivacy(
+                    mSharedPrefManager.authToken.toString(), postId, "all"
+                )
+                R.id.rbReEchoWithComment -> mPresenter.updatePostPrivacy(
+                    mSharedPrefManager.authToken.toString(), postId, "friends"
+                )
+            }
+            echoOptionSheet.dismiss()
+        }
+        echoOptionSheet.show()
     }
 
     override fun onCommentClick(position: Int, model: CommentModel) {

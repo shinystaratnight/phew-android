@@ -112,6 +112,11 @@ class HomeAdapter(
                     mListener.onFavoriteClick(itemData.data?.id ?: 0)
                 }
 
+                itemView.ibFirstPostsItemShare.setOnClickListener {
+                    Log.e("HomeAdapter", "Echo is Clicked")
+                    mListener.onEchoClick(itemData.data?.id ?: 0)
+                }
+
                 if (itemData.data?.likes_count != null && itemData.data.likes_count > 0) {
                     if (mSharedPrefManager.appLanguage == "en")
                         itemView.tvFirstPostsItemReactions.setCompoundDrawablesWithIntrinsicBounds(
@@ -766,6 +771,7 @@ class HomeAdapter(
         fun onReactClick(postId: Int, reactionPosition: Int)
         fun onUserClick(userId: Int)
         fun onPhotosClick(list: ArrayList<ImageModel>)
+        fun onEchoClick(postId: Int)
     }
 
     private fun showReaction(context: Context, postId: Int): ReactionPopup {

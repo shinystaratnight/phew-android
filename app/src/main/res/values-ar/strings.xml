@@ -156,4 +156,6 @@
     <string name="refuse">رفض</string>
     <string name="share_secret_message">شارك رسالة مجهولة</string>
     <string name="secret_message">رسالة مجهولة</string>
+    <string name="re_echo_now">إعادة صدي الأن</string>
+    <string name="re_echo_with_comment">إعادة صدي مع تعليق</string>
 </resources>

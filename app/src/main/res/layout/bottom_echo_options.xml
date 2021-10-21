@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rgEchoOptionViewers"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/radius_shape"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/rbReEchoNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@android:color/transparent"
+        android:buttonTint="@android:color/black"
+        android:checked="true"
+        android:paddingStart="20dp"
+        android:text="@string/re_echo_now" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#6b6b6b" />
+
+    <RadioButton
+        android:id="@+id/rbReEchoWithComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@android:color/transparent"
+        android:buttonTint="@android:color/black"
+        android:paddingStart="20dp"
+        android:text="@string/re_echo_with_comment" />
+
+</RadioGroup>

@@ -41,6 +41,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.bottom_echo_options.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_viewers.*
 import kotlinx.android.synthetic.main.dialog_show_post.*
 import kotlinx.android.synthetic.main.dialog_show_post.ibChatImageClose
@@ -363,12 +364,37 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         postViewersSheet.show()
     }
 
+    private fun showEchoOptions(postId: Int) {
+        val echoOptionSheet = RoundedBottomSheetDialog(mContext)
+        echoOptionSheet.setContentView(
+            LayoutInflater.from(mContext)
+                .inflate(R.layout.bottom_echo_options, null, false)
+        )
+        echoOptionSheet.rgEchoOptionViewers.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rbReEchoNow -> mPresenter.updatePostPrivacy(
+                    mSharedPrefManager.authToken.toString(), postId, "all"
+                )
+                R.id.rbReEchoWithComment -> mPresenter.updatePostPrivacy(
+                    mSharedPrefManager.authToken.toString(), postId, "friends"
+                )
+            }
+            echoOptionSheet.dismiss()
+        }
+        echoOptionSheet.show()
+    }
+
     override fun onFavoriteClick(postId: Int) {
         if (activity != null && isAdded) {
             postsItemActionType = "Fav"
             reactedItemPos = mHomeItems.indexOf(mHomeItems.find { it.data?.id == postId })
             mPresenter.setPostFavorite(mSharedPrefManager.authToken.toString(), postId)
         }
+    }
+
+    override fun onEchoClick(postId: Int) {
+        if (activity != null && isAdded) showEchoOptions(postId)
+//        if (activity != null && isAdded) showPostViewers(postId)
     }
 
     private var reactedItemPos: Int? = null
