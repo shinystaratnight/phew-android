@@ -220,6 +220,73 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter {
             })
     }
 
+    override fun updatePostEcho(auth: String, postId: Int, showPrivacy: String, commentText: String?) {
+        if (commentText != null) {
+            mInterActor!!.echoWithComment(
+                auth,
+                postId,
+                commentText,
+                object : MVPBaseInteractorOutput<BaseResponse> {
+                    override fun onServiceRunning() {
+                        view?.showProgress()
+                    }
+
+                    override fun onResponseSuccess(response: Response<BaseResponse>) {
+                        view?.apply {
+                            hideProgress()
+                            onPostUpdate(response.body()!!)
+                        }
+                    }
+
+                    override fun onResponseError(response: Response<BaseResponse>) {
+                        view?.apply {
+                            hideProgress()
+                            onResponseError(response.errorBody()!!.string())
+                        }
+                    }
+
+                    override fun onResponseFailure(t: Throwable) {
+                        view?.apply {
+                            hideProgress()
+                            onResponseFailure(t)
+                        }
+                    }
+                })
+        } else {
+            mInterActor!!.echoWithoutComment(
+                auth,
+                postId,
+                showPrivacy,
+                object : MVPBaseInteractorOutput<BaseResponse> {
+                    override fun onServiceRunning() {
+                        view?.showProgress()
+                    }
+
+                    override fun onResponseSuccess(response: Response<BaseResponse>) {
+                        view?.apply {
+                            hideProgress()
+                            onPostUpdate(response.body()!!)
+                        }
+                    }
+
+                    override fun onResponseError(response: Response<BaseResponse>) {
+                        view?.apply {
+                            hideProgress()
+                            onResponseError(response.errorBody()!!.string())
+                        }
+                    }
+
+                    override fun onResponseFailure(t: Throwable) {
+                        view?.apply {
+                            hideProgress()
+                            onResponseFailure(t)
+                        }
+                    }
+                })
+        }
+
+    }
+
     override fun onDestroy() {
         view = null
         mInterActor = null

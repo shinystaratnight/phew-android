@@ -9,7 +9,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.akexorcist.screenshotdetection.ScreenshotDetectionDelegate
 import com.app.phew.R
@@ -364,7 +363,7 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         postViewersSheet.show()
     }
 
-    private fun showEchoOptions(postId: Int) {
+    private fun showEchoOptions(postId: Int, postType: String) {
         val echoOptionSheet = RoundedBottomSheetDialog(mContext)
         echoOptionSheet.setContentView(
             LayoutInflater.from(mContext)
@@ -372,12 +371,10 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         )
         echoOptionSheet.rgEchoOptionViewers.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.rbReEchoNow -> mPresenter.updatePostPrivacy(
-                    mSharedPrefManager.authToken.toString(), postId, "all"
+                R.id.rbEchoOnly -> mPresenter.updatePostEcho(
+                    mSharedPrefManager.authToken.toString(), postId, "all", null
                 )
-                R.id.rbReEchoWithComment -> mPresenter.updatePostPrivacy(
-                    mSharedPrefManager.authToken.toString(), postId, "friends"
-                )
+                R.id.rbEchoWithComment -> Log.i(this.tag, "Echo With Comment")
             }
             echoOptionSheet.dismiss()
         }
@@ -392,9 +389,8 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         }
     }
 
-    override fun onEchoClick(postId: Int) {
-        if (activity != null && isAdded) showEchoOptions(postId)
-//        if (activity != null && isAdded) showPostViewers(postId)
+    override fun onEchoClick(postId: Int, postType: String) {
+        if (activity != null && isAdded) showEchoOptions(postId, postType)
     }
 
     private var reactedItemPos: Int? = null

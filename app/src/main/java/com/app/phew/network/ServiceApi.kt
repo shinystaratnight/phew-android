@@ -25,7 +25,6 @@ import com.app.phew.models.packages.PackagesResponse
 import com.app.phew.models.places.PlacesResponse
 import com.app.phew.models.searchResponse.SearchResponse
 import okhttp3.MultipartBody
-import org.androidannotations.annotations.rest.Post
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -422,4 +421,22 @@ interface ServiceApi {
         @Query("message")message:String
     ): Call<BaseResponse>
 
+    @POST(Urls.POSTS)
+    fun echoWithoutComment(
+        @Header("authorization") auth: String,
+        @Query("post_id") postId: Int,
+        @Query("show_privacy") showPrivacy: String,
+        @Query("post_type") postType: String = "echo_without_comment",
+        @Query("activity_type") activityType: String = "normal",
+    ): Call<BaseResponse>
+
+    @POST(Urls.POSTS)
+    fun echoWithComment(
+        @Header("authorization") auth: String,
+        @Query("post_id") postId: Int,
+        @Query("text") commentText: String,
+        @Query("post_type") postType: String = "echo_with_comment",
+        @Query("activity_type") activityType: String = "normal",
+        @Query("show_privacy") showPrivacy: String = "all",
+    ): Call<BaseResponse>
 }

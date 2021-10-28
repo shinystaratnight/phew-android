@@ -19,7 +19,6 @@ import com.app.phew.ui.home.HomeAdapter
 import com.app.phew.ui.showProfile.ShowProfileActivity
 import com.app.phew.utils.CommonUtil
 import com.app.phew.utils.SBManager
-import com.bumptech.glide.Glide
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.esafirm.imagepicker.features.ImagePicker
 import com.google.android.exoplayer2.ExoPlaybackException
@@ -289,8 +288,8 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
         mPresenter.setPostFavorite(mSharedPrefManager.authToken.toString(), postId)
     }
 
-    override fun onEchoClick(postId: Int) {
-        showEchoOptions(postId)
+    override fun onEchoClick(postId: Int, postType: String) {
+        showEchoOptions(postId, postType)
     }
 
     private var reactedItem: HomeModel? = null
@@ -373,7 +372,7 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
         postViewersSheet.show()
     }
 
-    private fun showEchoOptions(postId: Int) {
+    private fun showEchoOptions(postId: Int, postType: String) {
         val echoOptionSheet = RoundedBottomSheetDialog(mContext)
         echoOptionSheet.setContentView(
             LayoutInflater.from(mContext)
@@ -381,10 +380,10 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
         )
         echoOptionSheet.rgEchoOptionViewers.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.rbReEchoNow -> mPresenter.updatePostPrivacy(
+                R.id.rbEchoOnly -> mPresenter.updatePostPrivacy(
                     mSharedPrefManager.authToken.toString(), postId, "all"
                 )
-                R.id.rbReEchoWithComment -> mPresenter.updatePostPrivacy(
+                R.id.rbEchoWithComment -> mPresenter.updatePostPrivacy(
                     mSharedPrefManager.authToken.toString(), postId, "friends"
                 )
             }

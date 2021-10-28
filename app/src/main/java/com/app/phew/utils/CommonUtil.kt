@@ -77,7 +77,7 @@ class CommonUtil {
                 FirebaseApp.initializeApp(context)
                 MyFirebaseInstanceIDService.getToken(context)
                 sharedPrefManager.deviceToken = MyFirebaseInstanceIDService.deviceToken
-                Log.i("Elasil", "get token , ${sharedPrefManager.deviceToken}")
+                Log.i("Email", "get token , ${sharedPrefManager.deviceToken}")
             } else {
                 /*object : Thread() {
                     override fun run() {

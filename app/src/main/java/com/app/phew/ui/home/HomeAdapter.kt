@@ -12,6 +12,7 @@ import androidx.appcompat.widget.PopupMenu
 import com.app.phew.R
 import com.app.phew.base.ParentRecyclerAdapter
 import com.app.phew.base.ParentRecyclerViewHolder
+import com.app.phew.models.auth.UserModel
 import com.app.phew.models.home.ActivityModel
 import com.app.phew.models.home.HomeModel
 import com.app.phew.models.images.ImageModel
@@ -25,11 +26,21 @@ import kotlinx.android.synthetic.main.recycler_item_home_activities.view.*
 import kotlinx.android.synthetic.main.recycler_item_home_activities_share.view.*
 import kotlinx.android.synthetic.main.recycler_item_home_posts.view.*
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.*
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.ibEchoPostsItemRate
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.ibEchoPostsItemShare
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.ivEchoItemUserImage
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.ivEchoPostsItemUserImage
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.rvEchoItemImages
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoItemText
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoItemTime
 import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoItemUserName
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemComments
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemMenu
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemReactions
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemScreenShots
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemTime
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share.view.tvEchoPostsItemUserName
+import kotlinx.android.synthetic.main.recycler_item_home_posts_share_without_comment.view.*
 import kotlinx.android.synthetic.main.recycler_item_home_secret_message.view.*
 import kotlinx.android.synthetic.main.recycler_item_home_sponsors.view.*
 
@@ -49,6 +60,7 @@ class HomeAdapter(
                         HomeRows.LOADING.type_num -> R.layout.recycler_item_loading
                         HomeRows.POST_FIRST_NORMAL.type_num -> R.layout.recycler_item_home_posts
                         HomeRows.POST_FIRST_ACTIVITY.type_num -> R.layout.recycler_item_home_activities
+                        HomeRows.ECHO_WITHOUT_COMMENT.type_num -> R.layout.recycler_item_home_posts_share_without_comment
                         HomeRows.POST_ECHO_NORMAL.type_num -> R.layout.recycler_item_home_posts_share
                         HomeRows.POST_ECHO_ACTIVITY.type_num -> R.layout.recycler_item_home_activities_share
                         HomeRows.POST_SECRET_MESSAGE.type_num -> R.layout.recycler_item_home_secret_message
@@ -60,8 +72,8 @@ class HomeAdapter(
     override fun onBindViewHolder(holder: ParentRecyclerViewHolder, position: Int) {
         val itemData = data[position]
         val itemView = holder.itemView
-
-        when (getItemViewType(position)) {
+        val viewType = getItemViewType(position)
+        when (viewType) {
             HomeRows.LOADING.type_num -> {
             }
             HomeRows.POST_FIRST_NORMAL.type_num -> {
@@ -113,8 +125,7 @@ class HomeAdapter(
                 }
 
                 itemView.ibFirstPostsItemShare.setOnClickListener {
-                    Log.e("HomeAdapter", "Echo is Clicked")
-                    mListener.onEchoClick(itemData.data?.id ?: 0)
+                    mListener.onEchoClick(itemData.data?.id ?: 0, itemData.data?.post_type.toString())
                 }
 
                 if (itemData.data?.likes_count != null && itemData.data.likes_count > 0) {
@@ -236,6 +247,9 @@ class HomeAdapter(
                             if (itemData.data?.is_fav == true) R.drawable.ic_star_post_off else R.drawable.ic_star_post_on
                     )
                     mListener.onFavoriteClick(itemData.data?.id ?: 0)
+                }
+                itemView.ibFirstActivitiesItemShare.setOnClickListener {
+                    mListener.onEchoClick(itemData.data?.id ?: 0, itemData.data?.post_type.toString())
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
@@ -367,6 +381,9 @@ class HomeAdapter(
                             if (itemData.data?.is_fav == true) R.drawable.ic_star_post_off else R.drawable.ic_star_post_on
                     )
                     mListener.onFavoriteClick(itemData.data?.id ?: 0)
+                }
+                itemView.ibEchoPostsItemShare.setOnClickListener {
+                    mListener.onEchoClick(itemData.data?.id ?: 0, itemData.data?.post_type.toString())
                 }
                 Glide.with(itemView.context)
                         .load(itemData.data?.postable?.user?.profile_image.toString())
@@ -503,6 +520,10 @@ class HomeAdapter(
                             if (itemData.data?.is_fav == true) R.drawable.ic_star_post_off else R.drawable.ic_star_post_on
                     )
                     mListener.onFavoriteClick(itemData.data?.id ?: 0)
+                }
+
+                itemView.ibActivitiesShareItemShare.setOnClickListener {
+                    mListener.onEchoClick(itemData.data?.id ?: 0, itemData.data?.post_type.toString())
                 }
 
                 Glide.with(itemView.context)
@@ -677,6 +698,142 @@ class HomeAdapter(
                 itemView.tvSecretMessagesEchoItemText.text = itemData.data?.postable?.message.toString()
                 itemView.setOnClickListener { mListener.onPostClicked(position) }
             }
+            HomeRows.ECHO_WITHOUT_COMMENT.type_num -> {
+                itemView.tvEchoedUserName.text = itemData.data?.user?.fullname + " said"
+                itemView.tvEchoDate.text = itemData.data?.created_ago
+                val echoPost = itemData.data?.postable
+                itemView.tvEchoPostsItemScreenShots.visibility =
+                        if (echoPost?.user?.id == mSharedPrefManager.userData.id && !echoPost?.screen_shots.isNullOrEmpty()) View.VISIBLE else View.GONE
+                itemView.tvEchoPostsItemScreenShots.text =
+                        echoPost?.screen_shots?.size.toString()
+                itemView.tvEchoPostsItemMenu.visibility =
+                        if (echoPost?.user?.id == mSharedPrefManager.userData.id) View.VISIBLE else View.GONE
+                itemView.tvEchoPostsItemMenu.setOnClickListener {
+                    val popup = PopupMenu(itemView.context, itemView.tvEchoPostsItemMenu)
+                    popup.menuInflater.inflate(R.menu.menu_home_item_options, popup.menu)
+                    popup.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.menuDelete -> {
+                                mListener.onDeleteClick(position, echoPost?.id ?: 0)
+                                true
+                            }
+                            R.id.menuFindlay -> {
+                                mListener.onFindlayClick(echoPost?.id ?: 0)
+                                true
+                            }
+                            R.id.menuUpdatePrivacy -> {
+                                mListener.onUpdatePrivacyClick(echoPost?.id ?: 0)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                    popup.show()
+                }
+
+                Glide.with(itemView.context).load(echoPost?.user?.profile_image.toString())
+                        .placeholder(R.drawable.ic_emoji).into(itemView.ivEchoPostsItemUserImage)
+                itemView.ivEchoPostsItemUserImage.setOnClickListener {
+                    mListener.onUserClick(echoPost?.user?.id ?: 0)
+                }
+                itemView.tvEchoPostsItemUserName.text = echoPost?.user?.fullname.toString()
+                itemView.tvEchoPostsItemCommentText.text = echoPost?.text.toString()
+                itemView.tvEchoPostsItemTime.text = echoPost?.created_ago.toString()
+                itemView.ibEchoPostsItemRate.setImageResource(
+                        if (echoPost?.is_fav == true) R.drawable.ic_star_post_on else R.drawable.ic_star_post_off
+                )
+                itemView.ibEchoPostsItemRate.setOnClickListener {
+                    itemView.ibEchoPostsItemRate.setImageResource(
+                            if (echoPost?.is_fav == true) R.drawable.ic_star_post_off else R.drawable.ic_star_post_on
+                    )
+                    mListener.onFavoriteClick(echoPost?.id ?: 0)
+                }
+
+                itemView.ibEchoPostsItemShare.setOnClickListener {
+                    mListener.onEchoClick(echoPost?.id ?: 0, echoPost?.post_type.toString())
+                }
+
+                if (echoPost?.likes_count != null && echoPost.likes_count > 0) {
+                    if (mSharedPrefManager.appLanguage == "en")
+                        itemView.tvEchoPostsItemReactions.setCompoundDrawablesWithIntrinsicBounds(
+                                when (echoPost.like_type.toString()) {
+                                    "laugh" -> R.drawable.ic_react_laugh_on
+                                    "love" -> R.drawable.ic_react_love_on
+                                    "dislike" -> R.drawable.ic_react_dislike_on
+                                    else -> {
+                                        echoPost.like_type = ""
+                                        R.drawable.ic_react_love_off
+                                    }
+                                }, 0, 0, 0
+                        )
+                    else itemView.tvEchoPostsItemReactions.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0, when (echoPost.like_type.toString()) {
+                        "laugh" -> R.drawable.ic_react_laugh_on
+                        "love" -> R.drawable.ic_react_love_on
+                        "dislike" -> R.drawable.ic_react_dislike_on
+                        else -> {
+                            echoPost.like_type = ""
+                            R.drawable.ic_react_love_off
+                        }
+                    }, 0
+                    )
+
+                    itemView.tvEchoPostsItemReactions.text = when {
+                        echoPost.likes_count < 1000 -> echoPost.likes_count.toString()
+                        echoPost.likes_count in 1000..999999 ->
+                            String.format("%.2fK", (echoPost.likes_count / 1000).toFloat())
+                        else -> String.format(
+                                "%.2fM", (echoPost.likes_count / 1000000).toFloat()
+                        )
+                    }
+                } else {
+                    if (mSharedPrefManager.appLanguage == "en")
+                        itemView.tvEchoPostsItemReactions.setCompoundDrawablesWithIntrinsicBounds(
+                                R.drawable.ic_react_love_off, 0, 0, 0
+                        )
+                    else itemView.tvEchoPostsItemReactions.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0, R.drawable.ic_react_love_off, 0
+                    )
+                    itemView.tvEchoPostsItemReactions.text = "0"
+                }
+                itemView.tvEchoPostsItemReactions.setOnTouchListener(
+                        showReaction(itemView.tvEchoPostsItemReactions.context, echoPost?.id ?: 0)
+                )
+
+                if (echoPost?.comments_count != null)
+                    itemView.tvEchoPostsItemComments.text = when {
+                        echoPost.comments_count < 1000 -> echoPost.comments_count.toString()
+                        echoPost.comments_count in 1000..999999 ->
+                            String.format("%.2fK", (echoPost.comments_count / 1000).toFloat())
+                        else -> String.format(
+                                "%.2fM", (echoPost.comments_count / 1000000).toFloat()
+                        )
+                    }
+                else itemView.tvEchoPostsItemComments.text = "0"
+
+                val mImages = ArrayList<ImageModel>()
+                if (!echoPost?.images.isNullOrEmpty())
+                    for (image in echoPost?.images!!) {
+                        image.type = "image"
+                        mImages.add(image)
+                    }
+                if (!echoPost?.videos.isNullOrEmpty())
+                    for (video in echoPost?.videos!!) {
+                        video.type = "video"
+                        mImages.add(video)
+                    }
+
+                if (!mImages.isNullOrEmpty()) {
+                    itemView.rvEchoPostsItemImages.visibility = View.VISIBLE
+                    itemView.rvEchoPostsItemImages.adapter =
+                            PostAttachmentsAdapter(mcontext, mImages, object : PostAttachmentsAdapter.OnAttachmentListener {
+                                override fun onAttachmentListener() {
+                                    mListener.onPhotosClick(mImages)
+                                }
+                            })
+                } else itemView.rvEchoPostsItemImages.visibility = View.GONE
+                itemView.setOnClickListener { mListener.onPostClicked(position) }
+            }
             else -> {
                 //Log.e("FFFFF")
                 Glide.with(itemView.context).load(itemData.data?.sponsor?.logo.toString())
@@ -711,6 +868,7 @@ class HomeAdapter(
                             HomeRows.NORMAL.type_name -> HomeRows.POST_FIRST_NORMAL.type_num
                             else -> HomeRows.POST_FIRST_ACTIVITY.type_num
                         }
+                        HomeRows.ECHO_WITHOUT_COMMENT.type_name -> HomeRows.ECHO_WITHOUT_COMMENT.type_num
                         else -> {
                             if (data[position].data?.postable?.activity_type != null) {
                                 activityType = data[position].data?.postable?.activity_type.toString()
@@ -771,7 +929,7 @@ class HomeAdapter(
         fun onReactClick(postId: Int, reactionPosition: Int)
         fun onUserClick(userId: Int)
         fun onPhotosClick(list: ArrayList<ImageModel>)
-        fun onEchoClick(postId: Int)
+        fun onEchoClick(postId: Int, postType: String)
     }
 
     private fun showReaction(context: Context, postId: Int): ReactionPopup {

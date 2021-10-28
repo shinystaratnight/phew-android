@@ -16,6 +16,7 @@ class HomeContract {
         fun setPostFavorite(auth: String, postId: Int)
         fun reactPost(auth: String, postId: Int, type: String)
         fun screenShot(auth: String, screenShotBody: ScreenShotBody)
+        fun updatePostEcho(auth: String, postId: Int, showPrivacy: String, commentText: String?)
     }
 
     interface View : MVPBaseApiView<HomeResponse> {
@@ -46,6 +47,16 @@ class HomeContract {
 
         fun screenShot(
             auth: String, screenShotBody: ScreenShotBody,
+            output: MVPBaseInteractorOutput<BaseResponse>
+        )
+
+        fun echoWithoutComment(
+            auth: String, postId: Int, showPrivacy: String,
+            output: MVPBaseInteractorOutput<BaseResponse>
+        )
+
+        fun echoWithComment(
+            auth: String, postId: Int, commentText: String,
             output: MVPBaseInteractorOutput<BaseResponse>
         )
     }

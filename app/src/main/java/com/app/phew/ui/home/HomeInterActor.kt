@@ -158,4 +158,52 @@ class HomeInterActor : HomeContract.InterActor {
                 }
             })
     }
+
+    override fun echoWithoutComment(
+        auth: String,
+        postId: Int,
+        showPrivacy: String,
+        output: MVPBaseInteractorOutput<BaseResponse>
+    ) {
+        output.onServiceRunning()
+        RetroWeb.client.create(ServiceApi::class.java)
+            .echoWithoutComment(auth, postId, showPrivacy)
+            .enqueue(object : Callback<BaseResponse> {
+                override fun onResponse(
+                    call: Call<BaseResponse>, response: Response<BaseResponse>
+                ) {
+                    if (response.isSuccessful)
+                        output.onResponseSuccess(response)
+                    else output.onResponseError(response)
+                }
+
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    output.onResponseFailure(t)
+                }
+            })
+    }
+
+    override fun echoWithComment(
+        auth: String,
+        postId: Int,
+        commentText: String,
+        output: MVPBaseInteractorOutput<BaseResponse>
+    ) {
+        output.onServiceRunning()
+        RetroWeb.client.create(ServiceApi::class.java)
+            .echoWithComment(auth, postId, commentText)
+            .enqueue(object : Callback<BaseResponse> {
+                override fun onResponse(
+                    call: Call<BaseResponse>, response: Response<BaseResponse>
+                ) {
+                    if (response.isSuccessful)
+                        output.onResponseSuccess(response)
+                    else output.onResponseError(response)
+                }
+
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    output.onResponseFailure(t)
+                }
+            })
+    }
 }

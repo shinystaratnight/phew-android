@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_all_profile.xml" value="0.215625" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_all_profile_new.xml" value="0.34444444444444444" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_create_location.xml" value="0.3592592592592593" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_create_post.xml" value="0.3592592592592593" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_create_watching.xml" value="0.3592592592592593" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_friends_a.xml" value="0.215625" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/ic_outline_cancel_24.xml" value="0.221875" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/posts_card_background.xml" value="0.34444444444444444" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/drawable/radius_shape.xml" value="0.22239583333333332" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/activity_create_activity.xml" value="0.1" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/bottom_echo_options.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/bottom_sheet_post_tags.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/bottom_sheet_post_viewers.xml" value="0.36666666666666664" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/dialog_show_message.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/dialog_show_post.xml" value="0.20652173913043478" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/fragment_home.xml" value="0.34193840579710144" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_comment.xml" value="0.20652173913043478" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_activities.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_activities_share.xml" value="0.33" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_posts.xml" value="0.6244604316546762" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_posts_share.xml" value="0.30344202898550726" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_posts_share_without_comment.xml" value="0.5" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_secret_message.xml" value="0.36666666666666664" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_home_sponsors.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/layout/recycler_item_loading.xml" value="0.17831813576494426" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/menu/menu_echo_options.xml" value="0.1" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/menu/menu_home_item_options.xml" value="0.2698412698412698" />
+        <entry key="..\:/Mobile/phew-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3592592592592593" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

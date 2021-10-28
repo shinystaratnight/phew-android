@@ -17,6 +17,8 @@ import com.app.phew.ui.settings.notificationSettings.NotificationsSettingsActivi
 import com.app.phew.ui.settings.premium.PremiumMemberShipActivity
 import com.app.phew.utils.CommonUtil
 import com.app.phew.utils.SBManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -74,6 +76,11 @@ class SettingsActivity : ParentActivity() ,SettingsContract.View {
 
     override fun onLogoutSuccess(response: BaseResponse) {
         mSharedPrefManager.logout()
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.Builder(
+            GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.server_client_id)).requestEmail().build())
+        mGoogleSignInClient.signOut()
+        mGoogleSignInClient.revokeAccess()
         SplashActivity.startActivity(this)
         finishAffinity()
     }
