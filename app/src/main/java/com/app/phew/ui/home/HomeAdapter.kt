@@ -61,6 +61,7 @@ class HomeAdapter(
                         HomeRows.POST_FIRST_NORMAL.type_num -> R.layout.recycler_item_home_posts
                         HomeRows.POST_FIRST_ACTIVITY.type_num -> R.layout.recycler_item_home_activities
                         HomeRows.ECHO_WITHOUT_COMMENT.type_num -> R.layout.recycler_item_home_posts_share_without_comment
+                        HomeRows.ECHO_WITH_COMMENT.type_num -> R.layout.recycler_item_home_posts_share
                         HomeRows.POST_ECHO_NORMAL.type_num -> R.layout.recycler_item_home_posts_share
                         HomeRows.POST_ECHO_ACTIVITY.type_num -> R.layout.recycler_item_home_activities_share
                         HomeRows.POST_SECRET_MESSAGE.type_num -> R.layout.recycler_item_home_secret_message
@@ -336,7 +337,7 @@ class HomeAdapter(
                 }
                 itemView.setOnClickListener { mListener.onPostClicked(position) }
             }
-            HomeRows.POST_ECHO_NORMAL.type_num -> {
+            HomeRows.POST_ECHO_NORMAL.type_num, HomeRows.ECHO_WITH_COMMENT.type_num -> {
                 itemView.tvEchoPostsItemScreenShots.visibility =
                         if (itemData.data?.user?.id == mSharedPrefManager.userData.id && !itemData.data?.screen_shots.isNullOrEmpty()) View.VISIBLE else View.GONE
                 itemView.tvEchoPostsItemScreenShots.text =
@@ -373,6 +374,7 @@ class HomeAdapter(
                 }
                 itemView.tvEchoPostsItemUserName.text = itemData.data?.user?.fullname.toString()
                 itemView.tvEchoPostsItemTime.text = itemData.data?.created_ago.toString()
+                itemView.tvEchoCommentText.text = itemData.data?.text.toString()
                 itemView.ibEchoPostsItemRate.setImageResource(
                         if (itemData.data?.is_fav == true) R.drawable.ic_star_post_on else R.drawable.ic_star_post_off
                 )
@@ -869,6 +871,7 @@ class HomeAdapter(
                             else -> HomeRows.POST_FIRST_ACTIVITY.type_num
                         }
                         HomeRows.ECHO_WITHOUT_COMMENT.type_name -> HomeRows.ECHO_WITHOUT_COMMENT.type_num
+                        HomeRows.ECHO_WITH_COMMENT.type_name -> HomeRows.ECHO_WITH_COMMENT.type_num
                         else -> {
                             if (data[position].data?.postable?.activity_type != null) {
                                 activityType = data[position].data?.postable?.activity_type.toString()

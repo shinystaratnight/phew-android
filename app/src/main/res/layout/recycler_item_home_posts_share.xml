@@ -34,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,14 +42,17 @@
             app:layout_constraintTop_toTopOf="@id/ivEchoPostsItemUserImage"
             app:layout_constraintVertical_bias="0">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="20dp"
+                android:layout_height="18dp"
+                app:srcCompat="@drawable/ic_echo" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvEchoPostsItemText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_echo"
-                android:drawablePadding="8dp"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical"
                 android:lines="1"
@@ -61,7 +65,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvEchoPostsItemScreenShots"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="8dp"
                 android:background="@android:color/transparent"
@@ -114,10 +118,25 @@
             android:minLines="1"
             android:text="@string/app_name"
             android:textAlignment="viewStart"
+            android:textColor="@color/colorPostsDate"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tvEchoPostsItemUserName"
             app:layout_constraintStart_toEndOf="@id/tvEchoPostsItemUserName"
             app:layout_constraintTop_toTopOf="@id/tvEchoPostsItemUserName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEchoCommentText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:ellipsize="end"
+            android:gravity="start|center_vertical"
+            android:minLines="1"
+            android:text="@string/app_name"
+            android:textAlignment="viewStart"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/ivEchoPostsItemUserImage"
+            app:layout_constraintTop_toBottomOf="@id/ivEchoPostsItemUserImage" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layEchoPostsItemPost"
@@ -127,7 +146,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivEchoPostsItemUserImage"
-            app:layout_constraintTop_toBottomOf="@+id/tvEchoPostsItemUserName"
+            app:layout_constraintTop_toBottomOf="@id/tvEchoCommentText"
             app:layout_constraintVertical_bias="0">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -204,9 +223,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
-                android:orientation="horizontal"
                 android:clickable="true"
                 android:focusable="true"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvEchoItemText"

@@ -21,9 +21,10 @@ import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
 import com.app.phew.models.images.ImageModel
 import com.app.phew.network.Urls
-import com.app.phew.ui.createPost.CreatePostActivity
 import com.app.phew.ui.createActivity.MoviesActivity
 import com.app.phew.ui.createActivity.PlacesActivity
+import com.app.phew.ui.createEchoPost.CreateEchoPostActivity
+import com.app.phew.ui.createPost.CreatePostActivity
 import com.app.phew.ui.postDetails.PhotosAdapter
 import com.app.phew.ui.postDetails.PostDetailsActivity
 import com.app.phew.ui.showProfile.ShowProfileActivity
@@ -374,7 +375,10 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
                 R.id.rbEchoOnly -> mPresenter.updatePostEcho(
                     mSharedPrefManager.authToken.toString(), postId, "all", null
                 )
-                R.id.rbEchoWithComment -> Log.i(this.tag, "Echo With Comment")
+                R.id.rbEchoWithComment -> {
+                    val postData = mHomeItems.find { it.data?.id == postId }?.data
+                    CreateEchoPostActivity.startActivity(mContext as AppCompatActivity, Gson().toJson(postData))
+                }
             }
             echoOptionSheet.dismiss()
         }

@@ -68,6 +68,7 @@
         <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.myFriendes.MyFriendsActivity" />
         <activity android:name=".ui.secretMessage.SecretMessageActivity" />
+        <activity android:name=".ui.createEchoPost.CreateEchoPostActivity" />
 
         <meta-data
             android:name="com.google.android.geo.api_key"

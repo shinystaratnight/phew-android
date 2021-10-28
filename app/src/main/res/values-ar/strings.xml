@@ -69,7 +69,7 @@
     <string name="and">و</string>
     <string name="watching">يشاهد</string>
     <string name="others">آخرين</string>
-    <string name="share_post_with">مشاركة منشور</string>
+    <string name="share_post_with">تم إعادة الصدي بواسطة</string>
     <string name="please_enter_valid_code">الرجاء إدخال رمز صحيح</string>
     <string name="waiting_friend_requests">طلبات الصداقة المنتظرة</string>
     <string name="accept">قبول</string>
@@ -92,7 +92,7 @@
     <string name="home_create_location">إنشاء حدث موقع</string>
     <string name="home_create">إنشاء</string>
     <string name="post">نشر</string>
-    <string name="what_is_in_your_mind">في ماذا تفكر؟</string>
+    <string name="what_is_in_your_mind">اكتب ما تفكر به ؟</string>
     <string name="who_can_see_your_post">من يستطيع رؤية منشورك؟</string>
     <string name="followers">المتابعون</string>
     <string name="only_me">أنا فقط</string>
