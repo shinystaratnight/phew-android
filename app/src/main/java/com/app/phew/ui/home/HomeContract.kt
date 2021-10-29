@@ -6,6 +6,7 @@ import com.app.phew.base.MVPBasePresenter
 import com.app.phew.models.BaseResponse
 import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
+import com.app.phew.models.movies.MoviesSearchResponse
 
 class HomeContract {
     interface Presenter : MVPBasePresenter {
@@ -17,10 +18,12 @@ class HomeContract {
         fun reactPost(auth: String, postId: Int, type: String)
         fun screenShot(auth: String, screenShotBody: ScreenShotBody)
         fun updatePostEcho(auth: String, postId: Int, showPrivacy: String, commentText: String?)
+        fun searchMovie(movieId: Int, query: String)
     }
 
     interface View : MVPBaseApiView<HomeResponse> {
         fun onPostUpdate(response: BaseResponse)
+        fun onSearchMovie(response: MoviesSearchResponse, moveInt: Int)
     }
 
     interface InterActor {
@@ -58,6 +61,11 @@ class HomeContract {
         fun echoWithComment(
             auth: String, postId: Int, commentText: String,
             output: MVPBaseInteractorOutput<BaseResponse>
+        )
+
+        fun searchMovie(
+            query: String,
+            output: MVPBaseInteractorOutput<MoviesSearchResponse>
         )
     }
 }

@@ -4,6 +4,7 @@ import com.app.phew.base.MVPBaseInteractorOutput
 import com.app.phew.models.BaseResponse
 import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
+import com.app.phew.models.movies.MoviesSearchResponse
 import retrofit2.Response
 
 class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter {
@@ -284,7 +285,35 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter {
                     }
                 })
         }
+    }
 
+    override fun searchMovie(movieId: Int, query: String) {
+        mInterActor!!.searchMovie(query, object : MVPBaseInteractorOutput<MoviesSearchResponse> {
+            override fun onServiceRunning() {
+                view?.showProgress()
+            }
+
+            override fun onResponseSuccess(response: Response<MoviesSearchResponse>) {
+                view?.apply {
+                    hideProgress()
+                    onSearchMovie(response.body()!!, movieId)
+                }
+            }
+
+            override fun onResponseError(response: Response<MoviesSearchResponse>) {
+                view?.apply {
+                    hideProgress()
+                    onResponseError(response.errorBody()!!.string())
+                }
+            }
+
+            override fun onResponseFailure(t: Throwable) {
+                view?.apply {
+                    hideProgress()
+                    onResponseFailure(t)
+                }
+            }
+        })
     }
 
     override fun onDestroy() {

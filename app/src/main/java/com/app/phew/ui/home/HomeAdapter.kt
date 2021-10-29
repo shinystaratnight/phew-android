@@ -16,6 +16,7 @@ import com.app.phew.models.auth.UserModel
 import com.app.phew.models.home.ActivityModel
 import com.app.phew.models.home.HomeModel
 import com.app.phew.models.images.ImageModel
+import com.app.phew.models.places.MapsSearchData
 import com.bumptech.glide.Glide
 import com.github.pgreze.reactions.PopupGravity
 import com.github.pgreze.reactions.ReactionPopup
@@ -220,6 +221,7 @@ class HomeAdapter(
                 itemView.tvFirstActivitiesItemMenu.setOnClickListener {
                     val popup = PopupMenu(itemView.context, itemView.tvFirstActivitiesItemMenu)
                     popup.menuInflater.inflate(R.menu.menu_home_item_options, popup.menu)
+                    popup.menu.removeItem(R.id.menuFindlay)
                     popup.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.menuDelete -> {
@@ -265,11 +267,24 @@ class HomeAdapter(
                             itemView.context.getString(R.string.`in`)
                     val location = Gson().fromJson(
                             itemData.data.location.data.toString(),
-                            ActivityModel.LocationModel::class.java
+                        MapsSearchData::class.java
                     )
-                    if (location != null)
+                    if (location != null) {
                         itemView.tvFirstActivitiesItemUserActivation.text =
-                                location.address ?: location.name ?: ""
+                            location.name ?: location.name ?: ""
+                        itemView.tvFirstActivitiesItemUserActivation.setOnClickListener {
+                            val gmmIntentUri = Uri.parse(
+                                "geo:${location.geometry?.location?.lat.toString()},${location.geometry?.location?.lng.toString()}?q=" +
+                                        Uri.encode(location.name)
+                            )
+                            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                            mapIntent.setPackage("com.google.android.apps.maps")
+                            mapIntent.resolveActivity(this.mcontext.packageManager)?.let {
+                                this.mcontext.startActivity(mapIntent)
+                            }
+                        }
+                    }
+
                     itemView.ibFirstActivitiesItemType.setImageResource(R.drawable.ic_location_h)
                 } else {
                     itemView.tvFirstActivitiesItemUserActivity.text =
@@ -278,9 +293,13 @@ class HomeAdapter(
                             itemData.data?.watching?.data.toString(),
                             ActivityModel.WatchingModel::class.java
                     )
-                    if (watching != null)
+                    if (watching != null) {
                         itemView.tvFirstActivitiesItemUserActivation.text =
-                                watching.title.toString()
+                            watching.title.toString()
+                        itemView.tvFirstActivitiesItemUserActivation.setOnClickListener {
+                            mListener.onMovieClick(watching.id!!, watching.title.toString())
+                        }
+                    }
                     itemView.ibFirstActivitiesItemType.setImageResource(R.drawable.ic_watching_h)
                 }
                 itemView.tvFirstActivitiesItemTime.text = itemData.data?.created_ago.toString()
@@ -335,7 +354,7 @@ class HomeAdapter(
                     itemView.tvFirstActivitiesItemMentionOthers.visibility = View.GONE
                     itemView.rvFirstActivitiesItemMentionsImages.visibility = View.GONE
                 }
-                itemView.setOnClickListener { mListener.onPostClicked(position) }
+//                itemView.setOnClickListener { mListener.onPostClicked(position) }
             }
             HomeRows.POST_ECHO_NORMAL.type_num, HomeRows.ECHO_WITH_COMMENT.type_num -> {
                 itemView.tvEchoPostsItemScreenShots.visibility =
@@ -933,6 +952,7 @@ class HomeAdapter(
         fun onUserClick(userId: Int)
         fun onPhotosClick(list: ArrayList<ImageModel>)
         fun onEchoClick(postId: Int, postType: String)
+        fun onMovieClick(movieId: Int, movieTitle: String)
     }
 
     private fun showReaction(context: Context, postId: Int): ReactionPopup {

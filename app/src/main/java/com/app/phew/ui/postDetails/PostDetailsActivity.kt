@@ -292,6 +292,10 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
         showEchoOptions(postId, postType)
     }
 
+    override fun onMovieClick(movieId: Int, movieTitle: String) {
+
+    }
+
     private var reactedItem: HomeModel? = null
     private var reactPosition = -1
     override fun onReactClick(postId: Int, reactionPosition: Int) {

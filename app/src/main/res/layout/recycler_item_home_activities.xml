@@ -93,7 +93,8 @@
                 android:minLines="1"
                 android:text="@string/app_name"
                 android:textAlignment="viewStart"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFirstActivitiesItemScreenShots"
@@ -216,6 +217,7 @@
             android:layout_marginVertical="8dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_echo_post"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linFirstActivitiesItemMentions"
             app:layout_constraintHorizontal_bias="1"

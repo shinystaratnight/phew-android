@@ -20,6 +20,9 @@ import com.app.phew.models.home.HomeModel
 import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
 import com.app.phew.models.images.ImageModel
+import com.app.phew.models.movies.MovieDetail
+import com.app.phew.models.movies.MovieModel
+import com.app.phew.models.movies.MoviesSearchResponse
 import com.app.phew.network.Urls
 import com.app.phew.ui.createActivity.MoviesActivity
 import com.app.phew.ui.createActivity.PlacesActivity
@@ -30,6 +33,7 @@ import com.app.phew.ui.postDetails.PostDetailsActivity
 import com.app.phew.ui.showProfile.ShowProfileActivity
 import com.app.phew.utils.CommonUtil
 import com.app.phew.utils.SBManager
+import com.bumptech.glide.Glide
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
@@ -42,12 +46,14 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.bottom_echo_options.*
+import kotlinx.android.synthetic.main.bottom_movie_data.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_viewers.*
 import kotlinx.android.synthetic.main.dialog_show_post.*
 import kotlinx.android.synthetic.main.dialog_show_post.ibChatImageClose
 import kotlinx.android.synthetic.main.dialog_show_video.*
 
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.recycler_item_movies.view.*
 
 class HomeFragment(private var flag: String, private var url: String) : BaseFragment(),
     HomeContract.View,
@@ -385,6 +391,30 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         echoOptionSheet.show()
     }
 
+    private fun showMovieData(data: MovieDetail) {
+        val echoOptionSheet = RoundedBottomSheetDialog(mContext)
+        echoOptionSheet.setContentView(
+            LayoutInflater.from(mContext)
+                .inflate(R.layout.bottom_movie_data, null, false)
+        )
+
+        val logo = "https://image.tmdb.org/t/p/original/" +
+                if (!data?.logoImage.isNullOrEmpty()) data.logoImage
+                else data.poster_path
+        Glide.with(mContext).load(logo).into(echoOptionSheet.bottomMovieInclude.ivMoviesItemImage)
+        echoOptionSheet.bottomMovieInclude.tvMoviesItemName.text = data.title
+        echoOptionSheet.bottomMovieInclude.tvMoviesItemVotes.text = String.format(
+            "%d %s",
+            data.voteCount ?: data.vote_count,
+            mContext.getString(R.string.voted_on_this_view)
+        )
+
+        echoOptionSheet.linBottomMovieViewer.setOnClickListener { _ ->
+            echoOptionSheet.dismiss()
+        }
+        echoOptionSheet.show()
+    }
+
     override fun onFavoriteClick(postId: Int) {
         if (activity != null && isAdded) {
             postsItemActionType = "Fav"
@@ -395,6 +425,12 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
 
     override fun onEchoClick(postId: Int, postType: String) {
         if (activity != null && isAdded) showEchoOptions(postId, postType)
+    }
+
+    override fun onMovieClick(movieId: Int, movieTitle: String) {
+        if (activity != null && isAdded) {
+            mPresenter.searchMovie(movieId = movieId, query = movieTitle)
+        }
     }
 
     private var reactedItemPos: Int? = null
@@ -583,5 +619,10 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
 
     override fun onPhotoClick(position: Int, model: ImageModel) {
         showImageVideoDialog(model.data!!)
+    }
+
+    override fun onSearchMovie(response: MoviesSearchResponse, movieId: Int) {
+        val movieData: MovieDetail? = response.results.find { it.id == movieId }
+        if (movieData !== null) showMovieData(movieData)
     }
 }

@@ -4,6 +4,7 @@ import com.app.phew.base.MVPBaseInteractorOutput
 import com.app.phew.models.BaseResponse
 import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
+import com.app.phew.models.movies.MoviesSearchResponse
 import com.app.phew.network.RetroWeb
 import com.app.phew.network.ServiceApi
 import retrofit2.Call
@@ -202,6 +203,24 @@ class HomeInterActor : HomeContract.InterActor {
                 }
 
                 override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    output.onResponseFailure(t)
+                }
+            })
+    }
+
+    override fun searchMovie(query: String, output: MVPBaseInteractorOutput<MoviesSearchResponse>) {
+        output.onServiceRunning()
+        RetroWeb.moviesClient.create(ServiceApi::class.java).searchMovies("b9aa09eb38643436e7f8e12a1ba2e953", query, 1)
+            .enqueue(object : Callback<MoviesSearchResponse> {
+                override fun onResponse(
+                    call: Call<MoviesSearchResponse>, response: Response<MoviesSearchResponse>
+                ) {
+                    if (response.isSuccessful)
+                        output.onResponseSuccess(response)
+                    else output.onResponseError(response)
+                }
+
+                override fun onFailure(call: Call<MoviesSearchResponse>, t: Throwable) {
                     output.onResponseFailure(t)
                 }
             })
