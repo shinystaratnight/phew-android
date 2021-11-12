@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.app.phew.R
 import com.app.phew.base.ParentActivity
 import com.app.phew.models.BaseResponse
+import com.app.phew.models.friends.FriendModel
 import com.app.phew.models.friends.FriendsResponse
 import com.app.phew.models.home.PostResponse
 import com.app.phew.models.movies.MovieDetail
@@ -26,7 +27,8 @@ import kotlinx.android.synthetic.main.activity_create_activity.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_tags.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_viewers.*
 
-class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
+class CreateActivityActivity : ParentActivity(), CreateActivityContract.View,
+    FriendsAdapter.onFriendCheckedChangeListener, FriendNameAdapter.onFriendNameDeleteListener {
     override val layoutResource: Int
         get() = R.layout.activity_create_activity
     override val isEnableToolbar: Boolean
@@ -56,6 +58,7 @@ class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
     private var mShowPrivacy = "all"
     private var isTags = false
     private lateinit var mPostTagsSheet: RoundedBottomSheetDialog
+    private lateinit var mSelectedFriends : ArrayList<FriendModel>
 
     override fun initializeComponents() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -85,12 +88,16 @@ class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
         ibCreateActivityOptionsViewers.setOnClickListener { showPostViewers() }
 
         tvCreateActivity.setOnClickListener {
+            var friendsWith: String? = null
+            if (mSelectedFriends.size > 0) friendsWith = mSelectedFriends.map { model -> "\"" + model.user?.id.toString() + "\"" }.joinToString(prefix = "[", postfix = "]")
             if (mIsLocation)
                 mPresenter.createPost(mSharedPrefManager.authToken.toString(), null, "first", "location",
-                        null, Gson().toJson(mSelectedLocation), null, null, mShowPrivacy, 0, null, null)
+                        null, Gson().toJson(mSelectedLocation), null, friendsWith, mShowPrivacy, 0, null, null)
             else mPresenter.createPost(mSharedPrefManager.authToken.toString(), null, "first", "watching",
-                    null, null, Gson().toJson(mSelectedMovie), null, mShowPrivacy, 0, null, null)
+                    null, null, Gson().toJson(mSelectedMovie), friendsWith, mShowPrivacy, 0, null, null)
         }
+
+        mSelectedFriends = ArrayList()
     }
 
     private fun showPostTags() {
@@ -99,6 +106,13 @@ class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
                 LayoutInflater.from(mContext)
                         .inflate(R.layout.bottom_sheet_post_tags, null, false)
         )
+
+        mPostTagsSheet.btnPostTagsConfirm.setOnClickListener {
+            if (mSelectedFriends.size > 0) {
+                rvCreateActivityFriendsView.adapter = FriendNameAdapter(mContext, mSelectedFriends, this)
+                mPostTagsSheet.dismiss()
+            }
+        }
 
         isTags = true
         mPresenter.getFriends(mSharedPrefManager.authToken.toString(),mSharedPrefManager.userData.id!!)
@@ -126,7 +140,7 @@ class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
 
     override fun onGetFriends(data: FriendsResponse) {
         if (!data.data.isNullOrEmpty())
-            mPostTagsSheet.rvPostTags.adapter = FriendsAdapter(mContext, data.data)
+            mPostTagsSheet.rvPostTags.adapter = FriendsAdapter(mContext, data.data, this)
     }
 
     override fun onCreatePost(data: PostResponse) {
@@ -156,5 +170,15 @@ class CreateActivityActivity : ParentActivity(), CreateActivityContract.View {
     override fun hideProgress() {
         if (isTags) mPostTagsSheet.relTagsLoader.visibility = View.GONE
         else relLoader.visibility = View.GONE
+    }
+
+    override fun onFriendClick(position: Int, checkedStatus: Boolean, model: FriendModel) {
+        if (checkedStatus) mSelectedFriends.add(model)
+        else mSelectedFriends.remove(model)
+    }
+
+    override fun onFriendDelete(position: Int, model: FriendModel) {
+        mSelectedFriends.remove(model)
+        rvCreateActivityFriendsView.adapter?.notifyItemRemoved(position)
     }
 }

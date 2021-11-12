@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_post_friends.view.*
 import kotlin.collections.ArrayList
 
 class FriendsAdapter(
-        private val context: Context, data: ArrayList<FriendModel>
+        private val context: Context, data: ArrayList<FriendModel>, private val mListener: onFriendCheckedChangeListener
 ) : ParentRecyclerAdapter<FriendModel>(context, data) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentRecyclerViewHolder =
@@ -25,7 +25,14 @@ class FriendsAdapter(
 
         Glide.with(context).load(itemData.user?.profile_image).into(itemView.ivPostFriendsItemImage)
         itemView.tvPostFriendsItemName.text = itemData.user?.fullname
+        itemView.cbPostFriendsItemCheck.setOnCheckedChangeListener { _, checkedStatus ->
+            mListener.onFriendClick(position, checkedStatus, itemData)
+        }
     }
 
     private inner class ViewHolder(itemView: View) : ParentRecyclerViewHolder(itemView)
+
+    interface onFriendCheckedChangeListener {
+        fun onFriendClick(position: Int, checkedStatus: Boolean, model: FriendModel)
+    }
 }

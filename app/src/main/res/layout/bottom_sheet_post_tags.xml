@@ -11,6 +11,7 @@
         android:id="@+id/linPostTags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/radius_shape"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +43,17 @@
             android:padding="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_post_friends" />
+
+        <Button
+            android:id="@+id/btnPostTagsConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/done" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <RelativeLayout
