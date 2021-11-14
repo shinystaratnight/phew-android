@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.hdodenhof.circleimageview.CircleImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ivActivityMentionsItemImage"
-    android:layout_width="32dp"
-    android:layout_height="32dp"
-    android:layout_marginEnd="8dp"
-    android:src="@drawable/ic_emoji" />
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linActivityMentionsItemContainer"
+    android:layout_width="27dp"
+    android:layout_height="27dp"
+    android:layout_marginEnd="-8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivActivityMentionsItemImage"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:src="@drawable/ic_emoji" />
+
+    <TextView
+        android:id="@+id/tvActivityMentionsItemText"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:background="@drawable/bg_mention_text"
+        android:gravity="center"
+        android:text="+27"
+        android:textColor="@color/colorPrimary"
+        android:textSize="11sp"
+        android:visibility="gone" />
+</androidx.appcompat.widget.LinearLayoutCompat>

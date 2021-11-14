@@ -22,4 +22,5 @@
     <color name="colorTextGray">#C6C6C6</color>
     <color name="colorPostsItemDivider">#29000000</color>
     <color name="colorPostsDate">#80000000</color>
+    <color name="colorMentionsTextBackground">#F2F2F2</color>
 </resources>

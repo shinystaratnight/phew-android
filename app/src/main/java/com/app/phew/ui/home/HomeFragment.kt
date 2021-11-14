@@ -16,12 +16,12 @@ import com.app.phew.base.BaseFragment
 import com.app.phew.listners.PaginationListener
 import com.app.phew.listners.PaginationListener.Companion.PAGE_START
 import com.app.phew.models.BaseResponse
+import com.app.phew.models.auth.UserModel
 import com.app.phew.models.home.HomeModel
 import com.app.phew.models.home.HomeResponse
 import com.app.phew.models.home.ScreenShotBody
 import com.app.phew.models.images.ImageModel
 import com.app.phew.models.movies.MovieDetail
-import com.app.phew.models.movies.MovieModel
 import com.app.phew.models.movies.MoviesSearchResponse
 import com.app.phew.network.Urls
 import com.app.phew.ui.createActivity.MoviesActivity
@@ -47,6 +47,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.bottom_echo_options.*
 import kotlinx.android.synthetic.main.bottom_movie_data.*
+import kotlinx.android.synthetic.main.bottom_sheet_mentions_friends.*
 import kotlinx.android.synthetic.main.bottom_sheet_post_viewers.*
 import kotlinx.android.synthetic.main.dialog_show_post.*
 import kotlinx.android.synthetic.main.dialog_show_post.ibChatImageClose
@@ -59,6 +60,7 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
     HomeContract.View,
     SwipeRefreshLayout.OnRefreshListener, HomeAdapter.HomeItemClickListeners,
     ScreenshotDetectionDelegate.ScreenshotDetectionListener, PhotosAdapter.OnPhotoClick,
+    MentionFriendsAdapter.onFriendClickListener,
     Player.EventListener {
     override val layoutResource: Int
         get() = R.layout.fragment_home
@@ -415,6 +417,18 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         echoOptionSheet.show()
     }
 
+    private fun showFriends(postId: Int) {
+        val friendsSheet = RoundedBottomSheetDialog(mContext)
+        friendsSheet.setContentView(
+            LayoutInflater.from(mContext)
+                .inflate(R.layout.bottom_sheet_mentions_friends, null, false)
+        )
+        val postData = mHomeItems.find { it.data?.id == postId }?.data
+        friendsSheet.rvActivityShowFriends.adapter = MentionFriendsAdapter(mContext, postData!!.mentions, this)
+
+        friendsSheet.show()
+    }
+
     override fun onFavoriteClick(postId: Int) {
         if (activity != null && isAdded) {
             postsItemActionType = "Fav"
@@ -431,6 +445,10 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
         if (activity != null && isAdded) {
             mPresenter.searchMovie(movieId = movieId, query = movieTitle)
         }
+    }
+
+    override fun onMentionsClick(postId: Int) {
+        if (activity != null && isAdded) showFriends(postId)
     }
 
     private var reactedItemPos: Int? = null
@@ -624,5 +642,9 @@ class HomeFragment(private var flag: String, private var url: String) : BaseFrag
     override fun onSearchMovie(response: MoviesSearchResponse, movieId: Int) {
         val movieData: MovieDetail? = response.results.find { it.id == movieId }
         if (movieData !== null) showMovieData(movieData)
+    }
+
+    override fun onFriendClick(position: Int, model: UserModel) {
+        ShowProfileActivity.startActivity(mContext as AppCompatActivity, model.id!!)
     }
 }

@@ -296,6 +296,10 @@ class PostDetailsActivity: ParentActivity(),PostDetailsContract.View,
 
     }
 
+    override fun onMentionsClick(postId: Int) {
+
+    }
+
     private var reactedItem: HomeModel? = null
     private var reactPosition = -1
     override fun onReactClick(postId: Int, reactionPosition: Int) {

@@ -109,7 +109,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivFirstPostsItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivFirstPostsItemUserImage)
                 itemView.ivFirstPostsItemUserImage.setOnClickListener {
                     mListener.onUserClick(itemData.data?.user?.id ?: 0)
                 }
@@ -256,7 +256,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivFirstActivitiesItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivFirstActivitiesItemUserImage)
                 itemView.ivFirstActivitiesItemUserImage.setOnClickListener {
                     mListener.onUserClick(itemData.data?.user?.id ?: 0)
                 }
@@ -321,28 +321,41 @@ class HomeAdapter(
                         itemView.tvFirstActivitiesItemMentionAnd.visibility = View.GONE
                         itemView.tvFirstActivitiesItemMentionOthers.visibility = View.GONE
                     }
-                    if (itemData.data.mentions.size > 3) {
+                    if (itemData.data.mentions.size > 5) {
+                        val mentionsExtraCountUserModel = UserModel(username = "mentionsExtraCount", friends_count = itemData.data.mentions.size - 5)
                         itemView.rvFirstActivitiesItemMentionsImages.adapter =
                                 HomeActivityMentionsAdapter(
-                                        itemView.context,
-                                        arrayListOf(
-                                                itemData.data.mentions[0],
-                                                itemData.data.mentions[1],
-                                                itemData.data.mentions[2]
-                                        )
+                                    itemView.context,
+                                    arrayListOf(
+                                        itemData.data.mentions[0],
+                                        itemData.data.mentions[1],
+                                        itemData.data.mentions[2],
+                                        itemData.data.mentions[3],
+                                        itemData.data.mentions[4],
+                                        mentionsExtraCountUserModel
+                                    ),
+                                    object: HomeActivityMentionsAdapter.onMentionClickListener {
+                                        override fun onMentionsClick() {
+                                            mListener.onMentionsClick(itemData.data.id)
+                                        }
+                                    }
                                 )
                         itemView.ivFirstActivitiesItemMentionsOthers.visibility = View.VISIBLE
                         itemView.ivFirstActivitiesItemMentionsOthersFilter.visibility = View.VISIBLE
-                        itemView.tvFirstActivitiesItemMentionsOthers.visibility = View.VISIBLE
+//                        itemView.tvFirstActivitiesItemMentionsOthers.visibility = View.VISIBLE
                         Glide.with(itemView.context)
                                 .load(itemData.data.mentions[3].profile_image.toString())
                                 .placeholder(R.color.white)
                                 .into(itemView.ivFirstActivitiesItemMentionsOthers)
-                        itemView.tvFirstActivitiesItemMentionsOthers.text =
-                                String.format("+%d", itemData.data.mentions.lastIndex)
+//                        itemView.tvFirstActivitiesItemMentionsOthers.text =
+//                                String.format("+%d", itemData.data.mentions.lastIndex)
                     } else {
                         itemView.rvFirstActivitiesItemMentionsImages.adapter =
-                                HomeActivityMentionsAdapter(itemView.context, itemData.data.mentions)
+                                HomeActivityMentionsAdapter(itemView.context, itemData.data.mentions, object: HomeActivityMentionsAdapter.onMentionClickListener {
+                                    override fun onMentionsClick() {
+                                        mListener.onMentionsClick(itemData.data.id)
+                                    }
+                                })
                         itemView.ivFirstActivitiesItemMentionsOthers.visibility = View.GONE
                         itemView.ivFirstActivitiesItemMentionsOthersFilter.visibility = View.GONE
                         itemView.tvFirstActivitiesItemMentionsOthers.visibility = View.GONE
@@ -387,7 +400,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivEchoPostsItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivEchoPostsItemUserImage)
                 itemView.ivEchoPostsItemUserImage.setOnClickListener {
                     mListener.onUserClick(itemData.data?.user?.id ?: 0)
                 }
@@ -526,7 +539,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivActivitiesShareItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivActivitiesShareItemUserImage)
                 itemView.ivActivitiesShareItemUserImage.setOnClickListener {
                     mListener.onUserClick(itemData.data?.user?.id ?: 0)
                 }
@@ -686,7 +699,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(itemData.data?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivSecretMessagesItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivSecretMessagesItemUserImage)
                 itemView.ivSecretMessagesItemUserImage.setOnClickListener {
                     mListener.onUserClick(itemData.data?.user?.id ?: 0)
                 }
@@ -753,7 +766,7 @@ class HomeAdapter(
                 }
 
                 Glide.with(itemView.context).load(echoPost?.user?.profile_image.toString())
-                        .placeholder(R.drawable.ic_emoji).into(itemView.ivEchoPostsItemUserImage)
+                        .placeholder(R.drawable.ic_anonymous).into(itemView.ivEchoPostsItemUserImage)
                 itemView.ivEchoPostsItemUserImage.setOnClickListener {
                     mListener.onUserClick(echoPost?.user?.id ?: 0)
                 }
@@ -953,6 +966,7 @@ class HomeAdapter(
         fun onPhotosClick(list: ArrayList<ImageModel>)
         fun onEchoClick(postId: Int, postType: String)
         fun onMovieClick(movieId: Int, movieTitle: String)
+        fun onMentionsClick(postId: Int)
     }
 
     private fun showReaction(context: Context, postId: Int): ReactionPopup {
